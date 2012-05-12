@@ -1,0 +1,9 @@
+parameters:
+
+
+services:
+    todo_user.registration.form.type:
+        class: Todo\Bundle\Form\Type\RegistrationFormType
+        arguments: [%fos_user.model.user.class%]
+        tags:
+            - { name: form.type, alias: todo_user_registration }

@@ -1,0 +1,55 @@
+{% extends('TodoBundle::layout.html.twig') %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="span3">&nbsp;</div>
+            <div class="span6">
+                {% if error %}
+                <div class="alert alert-error">
+                    <div class="alert-heading">
+                        <h3>Login Error</h3>
+                    </div>
+                    
+                    {{ error|trans({}, 'FOSUserBundle') }}
+                </div>
+                {% endif %}
+            
+                <form class="form-horizontal" action="{{ path('fos_user_security_check') }}" method="post">
+                    <fieldset>                
+                        <legend>Login</legend>
+                        
+                        <div class="control-group">
+                            <label class="control-label">Email Address:</label>
+                            
+                            <div class="controls">
+                                <input type="text" class="input-large" name="email" placeholder="Email" required="required" />
+                            </div>
+                        </div>
+                        
+                        <div class="control-group">
+                            <label class="control-label">Password:</label>
+                            
+                            <div class="controls">
+                                <input type="password" class="input-large" name="password" placeholder="Password" required="required" />
+                            </div>
+                        </div>   
+                        
+                        <div class="control-group">
+                            <div class="pull-right">
+                                <a href="{{ path('fos_user_resetting_request') }}">Forget Password?</a>
+                            </div>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <input type="submit" class="btn btn-primary" value="Login" name="_submit" />                    
+                        </div>                                                              
+                        
+                        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+                    </fieldset>
+                </form>
+            </div>
+            <div class="span3">&nbsp;</div>
+        </div>
+    </div>
+{% endblock %}

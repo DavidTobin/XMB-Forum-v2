@@ -3587,7 +3587,7 @@ input[type="submit"].btn.btn-mini {
 }
 
 .navbar {
-  color: #999999;
+  color: #555555;
 }
 
 .navbar .brand:hover {
@@ -3602,7 +3602,15 @@ input[type="submit"].btn.btn-mini {
   font-size: 20px;
   font-weight: 200;
   line-height: 1;
-  color: #999999;
+  color: #555555;
+}
+
+.navbar .brand > a {
+    color: inherit;
+}
+
+.navbar .brand > a:hover {
+    text-decoration: none;
 }
 
 .navbar .brand > small {
@@ -3776,10 +3784,10 @@ input[type="submit"].btn.btn-mini {
   float: none;
   padding: 9px 10px 11px;
   line-height: 19px;
-  color: #999999;
+  color: #555555;
   text-decoration: none;
   font-weight: normal;
-  font-size: 15px;
+  font-size: 12px;
   border-left: 1px solid #ededed;
 }
 
@@ -3796,7 +3804,7 @@ input[type="submit"].btn.btn-mini {
 }
 
 .navbar .nav > li > a:hover {
-  color: #777777;
+  color: #111111;
   text-decoration: none;
   background-color: #e5e5e5;
 }

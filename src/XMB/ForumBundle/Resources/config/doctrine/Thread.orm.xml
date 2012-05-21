@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="XMB\ForumBundle\Entity\Thread">
+    <change-tracking-policy>DEFERRED_IMPLICIT</change-tracking-policy>
+    <id name="id" type="integer" column="id">
+      <generator strategy="AUTO"/>
+    </id>
+    <field name="name" type="string" column="name" length="255"/>
+    <field name="slug" type="string" column="slug" length="255"/>
+    <field name="userid" type="integer" column="userid"/>
+    <field name="dateline" type="integer" column="dateline"/>
+    <field name="rating" type="integer" column="rating"/>
+    <field name="status" type="smallint" column="status"/>
+    <field name="forumid" type="integer" column="forumid"/>
+    <lifecycle-callbacks/>
+  </entity>
+</doctrine-mapping>

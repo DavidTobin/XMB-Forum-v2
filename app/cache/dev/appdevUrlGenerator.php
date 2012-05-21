@@ -24,6 +24,10 @@ class appdevUrlGenerator extends Symfony\Component\Routing\Generator\UrlGenerato
        '_configurator_step' => true,
        '_configurator_final' => true,
        '_home' => true,
+       '_home_long' => true,
+       '_profile' => true,
+       '_thread' => true,
+       '_ajax' => true,
        'fos_user_security_login' => true,
        'fos_user_security_check' => true,
        'fos_user_security_logout' => true,
@@ -113,7 +117,27 @@ class appdevUrlGenerator extends Symfony\Component\Routing\Generator\UrlGenerato
 
     private function get_homeRouteInfo()
     {
-        return array(array (), array (  '_controller' => 'Todo\\Bundle\\Controller\\DefaultController::indexAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/',  ),));
+        return array(array (), array (  '_controller' => 'XMB\\ForumBundle\\Controller\\HomeController::indexAction',  'forum' => 0,), array (), array (  0 =>   array (    0 => 'text',    1 => '/',  ),));
+    }
+
+    private function get_home_longRouteInfo()
+    {
+        return array(array (  0 => 'forum',), array (  '_controller' => 'XMB\\ForumBundle\\Controller\\HomeController::indexAction',  'forum' => 0,), array (), array (  0 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'forum',  ),  1 =>   array (    0 => 'text',    1 => '/home',  ),));
+    }
+
+    private function get_profileRouteInfo()
+    {
+        return array(array (  0 => 'username',), array (  '_controller' => 'XMB\\ForumBundle\\Controller\\ProfileController::indexAction',), array (), array (  0 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'username',  ),  1 =>   array (    0 => 'text',    1 => '/profile',  ),));
+    }
+
+    private function get_threadRouteInfo()
+    {
+        return array(array (  0 => 'slug',), array (  '_controller' => 'XMB\\ForumBundle\\Controller\\ThreadController::indexAction',), array (), array (  0 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'slug',  ),  1 =>   array (    0 => 'text',    1 => '/thread',  ),));
+    }
+
+    private function get_ajaxRouteInfo()
+    {
+        return array(array (  0 => 'action',), array (  '_controller' => 'XMB\\ForumBundle\\Controller\\AjaxController::indexAction',), array (), array (  0 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'action',  ),  1 =>   array (    0 => 'text',    1 => '/ajax',  ),));
     }
 
     private function getfos_user_security_loginRouteInfo()

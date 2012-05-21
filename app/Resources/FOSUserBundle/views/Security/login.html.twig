@@ -1,4 +1,8 @@
-{% extends('TodoBundle::layout.html.twig') %}
+{% extends('XMBForumBundle::layout.html.twig') %}
+
+{% block breadcrumbs %}
+    <li class="active"><a href="{{ path('fos_user_security_login') }}">Login</a></li>
+{% endblock %}
 
 {% block content %}
     <div class="container">
@@ -20,10 +24,10 @@
                         <legend>Login</legend>
                         
                         <div class="control-group">
-                            <label class="control-label">Email Address:</label>
+                            <label class="control-label">Username:</label>
                             
                             <div class="controls">
-                                <input type="text" class="input-large" name="_username" placeholder="Email" required="required" />
+                                <input type="text" class="input-large" name="_username" placeholder="Username / Email" required="required" />
                             </div>
                         </div>
                         

@@ -1,0 +1,74 @@
+{% extends('XMBForumBundle::layout.html.twig') %}
+
+{% block title %}
+{{ thread.name|striptags }}
+{% endblock %}
+
+{% block breadcrumbs %}
+    <li class="active"><a href="{{ path('_thread', { slug: thread.id}) }}">{{ thread.name }}</a></li>
+{% endblock %} 
+
+{% block content %}
+    
+    <div>
+        <div class="btn-group pull-right">
+            <a class="btn dropdown-toggle" data-toggle="dropdown" href="javascript://">
+                Moderation
+                <span class="caret"></span>
+            </a>
+            
+            <ul class="dropdown-menu">
+                <li><a href="javascript://">Delete Thread</a></li>
+            </ul>
+        </div> 
+        
+        <h2>{{ thread.name }}</h2>
+        
+        <small class="visible-phone">
+            Author: <strong>{{ thread.username }}</strong><br />
+            Posted: <strong>{{ thread.dateline|date('F jS \\a\\t g:ia') }}</strong><br />
+            Rating: {% if thread.rating > 0 %}
+                        <span class="badge badge-success">{{ thread.rating }}</span>
+                    {% elseif thread.rating < 0 %}
+                        <span class="badge badge-important">{{ thread.rating }}</span>
+                    {% else %}
+                        <span class="badge">{{ thread.rating }}</span>
+                    {% endif %}
+        </small>                         
+    </div>
+    
+    <hr />
+    
+    <p>{{ thread.message|striptags|nl2br }}</p>
+        
+    <div class="pull-right">
+        <div class="btn-group">
+            {% if app.user and app.user.id == thread.userid %}
+                <button class="btn">Edit</button>
+            {% endif %}
+            <button class="btn">Reply</button>
+            <button class="btn">Quote</button>
+            <button class="btn btn-success" onclick="XMB.update_thread_rating(true, {{ thread.id }})" data-action="{{ path('_ajax', { 'action': 'update_thread_rating' }) }}" id="rating-positive"><i class="icon-plus"></i></button>
+            <button class="btn btn-danger" onclick="XMB.update_thread_rating(false, {{ thread.id }})" data-action="{{ path('_ajax', { 'action': 'update_thread_rating' }) }}" id="rating-negative"><i class="icon-minus"></i></button>                    
+        </div>
+    </div>
+    
+{% endblock %}
+
+{% block sidebar %}
+    <dl class="sidebar-info visible-desktop">
+        <dt><strong>Author:</strong></dt> <dd><small>{{ thread.username }}</small></dd>
+        <dt><strong>Posted:</strong></dt> <dd><small>{{ thread.dateline|date('F jS \\a\\t g:ia') }}</small></dd>
+        
+        <dt><strong>Rating:</strong></dt> 
+        <dd>
+            {% if thread.rating > 0 %}
+                <small><span class="badge badge-success" id="thread-rating">{{ thread.rating }}</span></small>
+            {% elseif thread.rating < 0 %}
+                <small><span class="badge badge-important" id="thread-rating">{{ thread.rating }}</span></small>
+            {% else %}
+                <small><span class="badge" id="thread-rating">{{ thread.rating }}</span></small>
+            {% endif %}
+        </dd>
+    </dl>
+{% endblock %}

@@ -1,5 +1,5 @@
-TodoBundle:
-    resource: "@TodoBundle/Resources/config/routing.yml"
+XMBForumBundle:
+    resource: "@XMBForumBundle/Resources/config/routing.yml"
     prefix:   /
     
 fos_user_security:

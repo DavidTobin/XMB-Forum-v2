@@ -55,23 +55,59 @@ class __TwigTemplate_bd314321959d50c3227246395f19d25e extends Twig_Template
                     <div class=\"brand\"><a href=\"";
         // line 26
         echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("_home"), "html", null, true);
-        echo "\">Procrasto</a> <small>The simply todo tracker.</small></div>                                        
+        echo "\">Procrasto</a> <small>The simple todo tracker.</small></div>                                        
                     
                     <div class=\"nav-collapse\">
                         <ul class=\"nav\">
-                            <li><a href=\"";
+                            ";
         // line 30
+        if ($this->env->getExtension('security')->isGranted("IS_AUTHENTICATED_REMEMBERED")) {
+            // line 31
+            echo "                                <li class=\"dropdown\"><a href=\"javascript://\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">
+                                    <span class=\"badge badge-success\">0</span></a>
+                                    
+                                    <ul class=\"dropdown-menu\">
+                                        <li><a>You currently have <strong>0</strong> notifications!</a></li>
+                                    </ul>  
+                                </li>                                                                                                                              
+                            ";
+        }
+        // line 39
+        echo "                        
+                            <li><a href=\"";
+        // line 40
         echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("_home"), "html", null, true);
         echo "\"><i class=\"icon-home\"></i> Home</a></li>
-                            <li><a href=\"";
-        // line 31
-        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("fos_user_registration_register"), "html", null, true);
-        echo "\"><i class=\"icon-ok-circle\"></i> Register</a></li>
-                            <li><a href=\"";
-        // line 32
-        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("fos_user_security_login"), "html", null, true);
-        echo "\"><i class=\"icon-user\"></i> Login</a></li>
-                            <li><a href=\"#\"><span class=\"badge badge-success\">0</span></a></li>
+                            ";
+        // line 41
+        if (($this->env->getExtension('security')->isGranted("IS_AUTHENTICATED_REMEMBERED") == false)) {
+            echo "  
+                                <li><a href=\"";
+            // line 42
+            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("fos_user_registration_register"), "html", null, true);
+            echo "\"><i class=\"icon-ok-circle\"></i> Register</a></li>
+                                <li><a href=\"";
+            // line 43
+            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("fos_user_security_login"), "html", null, true);
+            echo "\"><i class=\"icon-user\"></i> Login</a></li>
+                            ";
+        } else {
+            // line 44
+            echo "                            
+                                <li><a href=\"";
+            // line 45
+            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("_profile"), "html", null, true);
+            echo "\"><i class=\"icon-user\"></i> ";
+            echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($this->getContext($context, "app"), "user"), "email"), "html", null, true);
+            echo "</a></li>   
+                                <li><a href=\"";
+            // line 46
+            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("fos_user_security_logout"), "html", null, true);
+            echo "\"><i class=\"icon-off\"></i> Logout</a></li>                         
+                            ";
+        }
+        // line 47
+        echo "                            
                         </ul>
                     </div>
                     
@@ -85,9 +121,9 @@ class __TwigTemplate_bd314321959d50c3227246395f19d25e extends Twig_Template
     </header>
     
     ";
-        // line 46
+        // line 60
         $this->displayBlock('content', $context, $blocks);
-        // line 49
+        // line 63
         echo "    
     <footer>
         <div class=\"container\">
@@ -99,9 +135,9 @@ class __TwigTemplate_bd314321959d50c3227246395f19d25e extends Twig_Template
             
             <div class=\"center\">
                 &copy; ";
-        // line 59
+        // line 73
         echo twig_escape_filter($this->env, twig_date_format_filter($this->env, "now", "Y"), "html", null, true);
-        echo " Procrasto
+        echo " <strong>Procrasto</strong>
             </div>                
         </div>
         
@@ -118,7 +154,7 @@ class __TwigTemplate_bd314321959d50c3227246395f19d25e extends Twig_Template
         
         <div class=\"modal modal-form fade\" id=\"login-popup\" style=\"display: none;\">            
             <form action=\"";
-        // line 75
+        // line 89
         echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("fos_user_security_check"), "html", null, true);
         echo "\" method=\"post\" class=\"form-horizontal\">
                 <div class=\"modal-header\">
@@ -155,7 +191,7 @@ class __TwigTemplate_bd314321959d50c3227246395f19d25e extends Twig_Template
         <!-- JS -->
         <script type=\"text/javascript\" src=\"http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js\"></script>
         <script type=\"text/javascript\" src=\"";
-        // line 109
+        // line 123
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("js/bootstrap.min.js"), "html", null, true);
         echo "\"></script>
         
@@ -178,10 +214,10 @@ class __TwigTemplate_bd314321959d50c3227246395f19d25e extends Twig_Template
         echo "Procrasto";
     }
 
-    // line 46
+    // line 60
     public function block_content($context, array $blocks = array())
     {
-        // line 47
+        // line 61
         echo "    
     ";
     }
@@ -198,6 +234,6 @@ class __TwigTemplate_bd314321959d50c3227246395f19d25e extends Twig_Template
 
     public function getDebugInfo()
     {
-        return array (  183 => 47,  180 => 46,  174 => 5,  157 => 109,  120 => 75,  101 => 59,  89 => 49,  87 => 46,  70 => 32,  66 => 31,  62 => 30,  55 => 26,  37 => 11,  33 => 10,  25 => 5,  19 => 1,);
+        return array (  219 => 61,  216 => 60,  210 => 5,  193 => 123,  156 => 89,  137 => 73,  125 => 63,  123 => 60,  108 => 47,  103 => 46,  97 => 45,  94 => 44,  89 => 43,  85 => 42,  81 => 41,  77 => 40,  74 => 39,  64 => 31,  62 => 30,  55 => 26,  37 => 11,  33 => 10,  25 => 5,  19 => 1,);
     }
 }

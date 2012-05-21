@@ -1,0 +1,10 @@
+<tr>
+    <td style="width: 50%;">
+        <span class="forum-title"><a href="{{ path('_thread', { 'slug': thread.threadid }) }}">{{ thread.name }}</a></span>                         
+   </td>
+   <td><a href="{{ path('_home_long', { 'forum': thread.slug }) }}">{{ thread.forumname }}</a></td>
+   <td><a href="#">{{ thread.username }}</a></td>
+   <td>0</td>
+   <td>1</td>
+   <td>{{ thread.dateline|date('F jS \\a\\t g:ia') }}</td>
+</tr>

@@ -1,0 +1,17 @@
+parameters:
+
+
+services:
+    forum_user.registration.form.type:
+        class: XMB\ForumBundle\Form\Type\RegistrationFormType
+        arguments: [%fos_user.model.user.class%]
+        tags:
+            - { name: form.type, alias: forum_user_registration }
+            
+    twig.extension.xmb_global:
+        class: XMB\ForumBundle\Globals\XMBGlobal
+        arguments:
+            doctrine: "@doctrine"
+            container: "@service_container"
+        tags:
+            - { name: twig.extension }       

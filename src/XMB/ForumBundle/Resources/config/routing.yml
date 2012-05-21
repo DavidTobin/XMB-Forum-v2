@@ -1,0 +1,23 @@
+_home:
+    pattern:  /
+    defaults: { _controller: XMBForumBundle:Home:index, forum: 0 }
+    
+_home_long:
+    pattern: /home/{forum}
+    defaults: { _controller: XMBForumBundle:Home:index, forum: 0 }
+    
+_profile:
+    pattern: /profile
+    defaults: { _controller: XMBForumBundle:Home:index }
+    
+_thread:
+    pattern: /thread/{slug}
+    defaults: { _controller: XMBForumBundle:Thread:index }
+    
+_ajax:
+    pattern: /ajax/{action}
+    defaults: { _controller: XMBForumBundle:Ajax:index }
+    
+_profile:
+    pattern: /profile/{username}
+    defaults: { _controller: XMBForumBundle:Profile:index }

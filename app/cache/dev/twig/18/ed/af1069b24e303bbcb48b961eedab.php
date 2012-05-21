@@ -28,17 +28,29 @@ class __TwigTemplate_18edaf1069b24e303bbcb48b961eedab extends Twig_Template
     public function block_content($context, array $blocks = array())
     {
         // line 4
-        echo "    <div class=\"container\">
-        <h1>What is Procrasto?</h1>            
-        
-        <br />
-        
-        <div class=\"well\">
-            <h2>Procrasto</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nisl nulla, cursus vel congue quis, adipiscing eu augue. Donec nec laoreet enim. Nunc erat sapien, fermentum pellentesque posuere vitae, bibendum at eros. In facilisis lorem sit amet quam scelerisque a faucibus felis ultrices. Vestibulum nisl massa, ultrices egestas cursus id, viverra a ipsum. Sed iaculis accumsan turpis nec accumsan. Fusce sodales varius adipiscing.
-            Nunc sed mauris elit. Praesent imperdiet volutpat fermentum. Pellentesque sit amet arcu urna. Cras sit amet dolor sed ligula pulvinar elementum. Proin at urna eros. Fusce consectetur enim a nulla sodales id consectetur nulla pharetra. Pellentesque sagittis ligula vitae justo tristique et facilisis nulla cursus. Nulla sed dolor eget nisl lacinia porta in vel massa. Nunc viverra justo sit amet tellus rutrum ut accumsan nisl semper. Cras lobortis posuere massa. Quisque laoreet egestas leo a ultricies. Mauris pulvinar facilisis purus, congue aliquet mauris cursus in.</p>
+        echo "    <div class=\"container\" style=\"text-align: center;\">
+        <div class=\"row\">
+            <div class=\"span3\">&nbsp;</div>
+            <div class=\"span6\">
+                <form action=\"";
+        // line 8
+        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("_beta"), "html", null, true);
+        echo "\" method=\"post\" class=\"form-horizontal\">    
+                    <fieldset>
+                        <legend>Participate in our beta testing!</legend>       
+                        
+                        <br />
+                        
+                        ";
+        // line 14
+        echo $this->env->getExtension('form')->renderWidget($this->getContext($context, "form"));
+        echo " <input type=\"submit\" class=\"btn btn-primary\" name=\"_submit\" value=\"Sign Up\" />
+                    </fieldset>
+                </form>
+            </div>
+            <div class=\"span3\">&nbsp;</div>
         </div>
-    </div>
+    </div>    
 ";
     }
 
@@ -54,6 +66,6 @@ class __TwigTemplate_18edaf1069b24e303bbcb48b961eedab extends Twig_Template
 
     public function getDebugInfo()
     {
-        return array (  29 => 4,  26 => 3,);
+        return array (  44 => 14,  35 => 8,  29 => 4,  26 => 3,);
     }
 }

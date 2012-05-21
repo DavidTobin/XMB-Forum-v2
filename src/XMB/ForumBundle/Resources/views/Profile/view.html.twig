@@ -1,0 +1,40 @@
+{% extends('XMBForumBundle::layout.html.twig') %}
+
+{% block breadcrumbs %}
+    <li class="active"><a href="{{ path('_profile', { 'username': user.username }) }}">{{ user.username }}</a></li>
+{% endblock %}
+
+{% block content %}
+    <div class="tabbable tabs-left">
+        <ul class="nav nav-tabs">
+            <li><a href="#info" data-toggle="tab">A tab!</a></li>
+            <li><a href="#contact" data-toggle="tab">Another Tab!</a></li>
+        </ul>
+        
+        <div class="tab-content">
+            <div class="tab-pane active" id="info">
+                <p>This is the info page!</p>
+            </div>
+            
+            <div class="tab-pane" id="contact">
+                <p>This is the contact page!</p>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block sidebar %}
+    <div class="sidebar">
+        <div class="sidebar-info">
+            <img src="{{ asset('img/avatar-med.png') }}" alt="{{ user.username }}" style="float: left; margin-right: 10px;" />
+            
+            <h4 class="glow">{{ user.username }}</h4>
+        </div>
+        
+        <dl class="sidebar-info">
+            <dt>Posts:</dt> <dd>2</dd>
+            <dt>Joined:</dt> <dd>{{ "now"|date('jS') }}</dd>
+        </dl>               
+        
+    </div>
+{% endblock %}

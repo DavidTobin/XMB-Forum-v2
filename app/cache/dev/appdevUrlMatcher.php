@@ -89,7 +89,27 @@ class appdevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             if (substr($pathinfo, -1) !== '/') {
                 return $this->redirect($pathinfo.'/', '_home');
             }
-            return array (  '_controller' => 'Todo\\Bundle\\Controller\\DefaultController::indexAction',  '_route' => '_home',);
+            return array (  '_controller' => 'XMB\\ForumBundle\\Controller\\HomeController::indexAction',  'forum' => 0,  '_route' => '_home',);
+        }
+
+        // _home_long
+        if (0 === strpos($pathinfo, '/home') && preg_match('#^/home(?:/(?P<forum>[^/]+?))?$#s', $pathinfo, $matches)) {
+            return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'XMB\\ForumBundle\\Controller\\HomeController::indexAction',  'forum' => 0,)), array('_route' => '_home_long'));
+        }
+
+        // _profile
+        if (0 === strpos($pathinfo, '/profile') && preg_match('#^/profile/(?P<username>[^/]+?)$#s', $pathinfo, $matches)) {
+            return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'XMB\\ForumBundle\\Controller\\ProfileController::indexAction',)), array('_route' => '_profile'));
+        }
+
+        // _thread
+        if (0 === strpos($pathinfo, '/thread') && preg_match('#^/thread/(?P<slug>[^/]+?)$#s', $pathinfo, $matches)) {
+            return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'XMB\\ForumBundle\\Controller\\ThreadController::indexAction',)), array('_route' => '_thread'));
+        }
+
+        // _ajax
+        if (0 === strpos($pathinfo, '/ajax') && preg_match('#^/ajax/(?P<action>[^/]+?)$#s', $pathinfo, $matches)) {
+            return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'XMB\\ForumBundle\\Controller\\AjaxController::indexAction',)), array('_route' => '_ajax'));
         }
 
         // fos_user_security_login

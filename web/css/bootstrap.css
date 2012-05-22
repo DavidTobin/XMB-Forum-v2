@@ -199,6 +199,10 @@ a:hover {
     border: none !important;
 }
 
+.no-shadow {
+    text-shadow: none !important;   
+}
+
 td p small {
     color: #555;
 }

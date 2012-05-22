@@ -5,7 +5,20 @@
         <div class="row">
             <div class="span10">
                 <div class="forum">
-                    <h1 id="active-forum-name">Latest Threads</h1>                                        
+                    <h1 id="active-forum-name">
+                        Latest Threads
+                        
+                        <div class="btn-group pull-right" style="padding-right: 10px; padding-top: 8px;">
+                            <a class="btn btn-mini dropdown-toggle no-shadow" data-toggle="dropdown" href="#">
+                                Actions
+                                <span class="caret"></span>
+                            </a>
+                            
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Create New Thread</a></li>
+                            </ul>
+                        </div>
+                    </h1>                                        
                 </div>
                 
                 <table class="table table-striped">
@@ -25,14 +38,16 @@
                         {% endfor %} 
                     </tbody>
                 </table>
+                
+                <hr />
                     
-                    <div class="pagination pagination-right">
-                        <ul>
-                            <li class="disabled"><a href="#">Prev</a></li>
-                            <li class="disabled"><a href="javascript://">1</a></li>
-                            <li class="disabled"><a href="#">Next</a></li>
-                        </ul>
-                    </div>
+                <div class="pagination pagination-right">
+                    <ul>
+                        <li class="disabled"><a href="#">Prev</a></li>
+                        <li class="disabled"><a href="javascript://">1</a></li>
+                        <li class="disabled"><a href="#">Next</a></li>
+                    </ul>
+                </div>                                
                 
                 <br />
                 

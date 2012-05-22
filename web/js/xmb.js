@@ -107,16 +107,24 @@ var XMB = {
             
             case 'thread_rating_updated':
                 if (typeof(data.rating) != 'undefined') {
-                    var rating = $('#thread-rating');
+                    var rating          = $('#thread-rating');
+                    var rating_phone    = $('#thread-rating-phone');
+                    
                     rating.text(data.rating);
+                    rating_phone.text(data.rating);
                     
                     if (data.rating == 1) {
                         rating.addClass('badge-success');
+                        rating_phone.addClass('badge-success');
                     } else if (data.rating == 0) {
                         rating.removeClass('badge-success');
                         rating.removeClass('badge-important');
+                        
+                        rating_phone.removeClass('badge-success');
+                        rating_phone.removeClass('badge-important');
                     } else if (data.rating == -1) {
                         rating.addClass('badge-important');
+                        rating_phone.addClass('badge-important');                    
                     }
                 }
                 

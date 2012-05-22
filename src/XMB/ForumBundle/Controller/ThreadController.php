@@ -5,6 +5,8 @@ namespace XMB\ForumBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use XMB\ForumBundle\Form\Type\ThreadFormType;
+use XMB\ForumBundle\Entity\Thread AS ThreadEntity;
 use XMB\ForumBundle\Model\Thread;
 
 
@@ -27,6 +29,17 @@ class ThreadController extends Controller
                 'thread'    => $thread
             ));
         }
+    }
+    
+    public function newAction($forumid=0) {
+        $thread = new ThreadEntity();
+        
+        $form = $this->createForm(new ThreadFormType(), $thread);
+        
+        return $this->render('XMBForumBundle:Thread:new.html.twig', array(
+            'forumid'   => $forumid,
+            'form'      => $form->createView()
+        ));
     }
     
     public function topAction() {

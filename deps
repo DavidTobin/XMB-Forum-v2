@@ -70,3 +70,13 @@
 [TinymceBundle]
     git=git://github.com/stfalcon/TinymceBundle.git
     target=/bundles/Stfalcon/Bundle/TinymceBundle
+    
+[DoctrineSluggableBundle]
+    git=https://github.com/samjarrett/DoctrineSluggableBundle.git
+    
+[php-decoda]
+    git=http://github.com/milesj/php-decoda.git
+
+[FMBbcodeBundle]
+    git=http://github.com/helios-ag/FMBbCodeBundle.git
+    target=bundles/FM/BbcodeBundle

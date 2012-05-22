@@ -163,15 +163,14 @@ body {
   font-size: 13px;
   line-height: 18px;
   color: #555;
-background: #363636; /* Old browsers */
-background: -moz-linear-gradient(-45deg,  #363636 1%, #d9d9d9 98%); /* FF3.6+ */
-background: -webkit-gradient(linear, left top, right bottom, color-stop(1%,#363636), color-stop(98%,#d9d9d9)); /* Chrome,Safari4+ */
-background: -webkit-linear-gradient(-45deg,  #363636 1%,#d9d9d9 98%); /* Chrome10+,Safari5.1+ */
-background: -o-linear-gradient(-45deg,  #363636 1%,#d9d9d9 98%); /* Opera 11.10+ */
-background: -ms-linear-gradient(-45deg,  #363636 1%,#d9d9d9 98%); /* IE10+ */
-background: linear-gradient(-45deg,  #363636 1%,#d9d9d9 98%); /* W3C */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#363636', endColorstr='#d9d9d9',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
-
+  background: #363636; /* Old browsers */
+  background: -moz-linear-gradient(-45deg,  #363636 1%, #d9d9d9 98%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, right bottom, color-stop(1%,#363636), color-stop(98%,#d9d9d9)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(-45deg,  #363636 1%,#d9d9d9 98%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(-45deg,  #363636 1%,#d9d9d9 98%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(-45deg,  #363636 1%,#d9d9d9 98%); /* IE10+ */
+  background: linear-gradient(-45deg,  #363636 1%,#d9d9d9 98%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#363636', endColorstr='#d9d9d9',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
   min-height: 715px;
   padding-top: 60px;
 }
@@ -294,6 +293,12 @@ label[for=thread_post] {
     text-align: left;
     color: #19e4ff;
     text-shadow: #16A3DD 0px 0px 10px;
+}
+
+.forum > h1 > span {
+    text-shadow: none;
+    font-size: 11px;
+    text-align: center;
 }
 
 .sidebar .nav-pills > .active > a,

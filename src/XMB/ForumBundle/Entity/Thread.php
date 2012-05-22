@@ -4,11 +4,12 @@ namespace XMB\ForumBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use SamJ\DoctrineSluggableBundle\SluggableInterface;
 
 /**
  * XMB\ForumBundle\Entity\Thread
  */
-class Thread
+class Thread implements SluggableInterface
 {
     /**
      * @var string $name
@@ -55,6 +56,10 @@ class Thread
     
     public function __construct() {
         $this->user = new ArrayCollection();
+        
+        $this->setDateline(time());
+        $this->setRating(0);
+        $this->setStatus(1);
     }
     
     public function getPost() {
@@ -92,6 +97,7 @@ class Thread
      */
     public function setSlug($slug)
     {
+        if (!empty($this->slug)) return false;
         $this->slug = $slug;
     }
 
@@ -103,6 +109,10 @@ class Thread
     public function getSlug()
     {
         return $this->slug;
+    }
+    
+    public function getSlugFields() {
+        return array($this->getName());
     }
 
     /**
@@ -130,8 +140,12 @@ class Thread
      *
      * @param integer $dateline
      */
-    public function setDateline($dateline)
+    public function setDateline($dateline=0)
     {
+        if ($dateline === 0) {
+            $dateline = time();
+        }
+        
         $this->dateline = $dateline;
     }
 
@@ -142,6 +156,10 @@ class Thread
      */
     public function getDateline()
     {
+        if ($this->dateline == null) {
+            $this->dateline = time();    
+        }
+        
         return $this->dateline;
     }
 
@@ -150,7 +168,7 @@ class Thread
      *
      * @param integer $rating
      */
-    public function setRating($rating)
+    public function setRating($rating=0)
     {
         $this->rating = $rating;
     }
@@ -161,7 +179,11 @@ class Thread
      * @return integer 
      */
     public function getRating()
-    {
+    {   
+        if (!$this->rating) {
+            $this->rating = 0;    
+        }
+        
         return $this->rating;
     }
 
@@ -170,7 +192,7 @@ class Thread
      *
      * @param smallint $status
      */
-    public function setStatus($status)
+    public function setStatus($status=1)
     {
         $this->status = $status;
     }
@@ -182,6 +204,10 @@ class Thread
      */
     public function getStatus()
     {
+        if (!$this->status) {
+            $this->status = 1;
+        }
+        
         return $this->status;
     }
 

@@ -31,6 +31,12 @@ var XMB = {
         $('#overlay').fadeOut();
     },
     
+    follow_url: function(url) {
+        if (url.length) {
+            window.location = url;
+        }
+    },
+    
     update_thread_rating: function(positive, threadid) {
         var rating = positive == true ? 1 : -1;
         
@@ -102,6 +108,7 @@ var XMB = {
                 $('#thread-list').html(html);
                 
                 $('#active-forum-name').text(data.forumname);
+                $('#active-forum-url').attr('data-url', data.followurl);
                 
                 break;
             

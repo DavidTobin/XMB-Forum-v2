@@ -144,3 +144,10 @@ stfalcon_tinymce:
             remove_linebreaks: false
             inline_styles: false
             convert_fonts_to_spans: false
+            
+fm_bbcode:
+    filter_sets:
+        xmb:
+            locale: ru
+            xhtml: true
+            filters: [ default, quote, image, list, quote, text, url ]

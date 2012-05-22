@@ -10,14 +10,29 @@ use XMB\ForumBundle\Form\Type\PostFormType;
 class ThreadFormType extends AbstractType {
     
     public function buildForm(FormBuilder $builder, array $options) {
-        $builder->add('name', null, array('label' => 'Title'));
+        $builder->add('name', null, array(
+            'label'         => 'Title',
+            'attr'          => array(
+                'placeholder'   => 'Thread Title'
+            ),
+            'required'      => true 
+        ));
+        
+        $builder->add('forumid', 'entity', array(
+            'class'             => 'XMBForumBundle:Forum',
+            'label'             => 'Forum',
+            'preferred_choices' => array($options['forumid']),
+            'required'          => true
+        ));
+        
         $builder->add('post', new PostFormType());
     }
     
     public function getDefaultOptions(array $options)
     {
         return array(
-            'data_class' => 'XMB\ForumBundle\Entity\Thread',
+            'data_class'    => 'XMB\ForumBundle\Entity\Thread',
+            'forumid'       => 0
         );
     }
 

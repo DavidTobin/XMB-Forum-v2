@@ -19,7 +19,8 @@ class HomeController extends Controller
                 
         $where = '';
         
-        $forumname = 'Latest Threads';
+        $forumname  = 'Latest Threads';
+        $forumid    = 0;
         if ($forum) {
             $getforum = $this->getDoctrine()->getEntityManager()
                 ->getRepository('XMBForumBundle:Forum')
@@ -29,10 +30,16 @@ class HomeController extends Controller
             
             if (count($getforum) > 0) {  
                 $forumname = $getforum[0]->getForumname();
+                $forumid   = $getforum[0]->getId();
                 
                 $where .= 'WHERE t.forumid = "' . $getforum[0]->getId() . '"';
             }
         }
+        
+        // Generate follow url for new threads
+        $followurl = $this->generateUrl('_thread_new', array(
+           'forum'  => $forumid 
+        ));
         
         $threads = new ThreadModel($db);
         $threads = $threads->fetchAll($where);
@@ -52,6 +59,7 @@ class HomeController extends Controller
             $response = new Response(json_encode(array(
                 'threads'   => $threads,
                 'forumname' => $forumname,
+                'followurl' => $followurl,
                 'error'     => $error,
                 'action'    => 'update_thread_list'
             )));   
@@ -66,6 +74,8 @@ class HomeController extends Controller
             
             return $this->render('XMBForumBundle:Home:index.html.twig', array(
                 'threads'   => $threads,
+                'forumname' => $forumname,
+                'followurl' => $followurl,
                 'forums'    => $forums,
                 'error'     => $error
             ));

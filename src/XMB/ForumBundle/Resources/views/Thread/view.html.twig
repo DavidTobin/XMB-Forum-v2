@@ -39,7 +39,7 @@
     
     <hr />
     
-    <p>{{ thread.message|striptags|nl2br }}</p>
+    <p>{{ thread.message|striptags|nl2br|bbcode_filter('xmb') }}</p>
         
     <div class="pull-right">
         <div class="btn-group">
@@ -48,8 +48,8 @@
             {% endif %}
             <button class="btn">Reply</button>
             <button class="btn">Quote</button>
-            <button class="btn btn-success" onclick="XMB.update_thread_rating(true, {{ thread.id }})" data-action="{{ path('_ajax', { 'action': 'update_thread_rating' }) }}" id="rating-positive"><i class="icon-plus"></i></button>
-            <button class="btn btn-danger" onclick="XMB.update_thread_rating(false, {{ thread.id }})" data-action="{{ path('_ajax', { 'action': 'update_thread_rating' }) }}" id="rating-negative"><i class="icon-minus"></i></button>                    
+            <button class="btn btn-success" onclick="XMB.update_thread_rating(true, {{ thread.threadid }})" data-action="{{ path('_ajax', { 'action': 'update_thread_rating' }) }}" id="rating-positive"><i class="icon-plus"></i></button>
+            <button class="btn btn-danger" onclick="XMB.update_thread_rating(false, {{ thread.threadid }})" data-action="{{ path('_ajax', { 'action': 'update_thread_rating' }) }}" id="rating-negative"><i class="icon-minus"></i></button>                    
         </div>
     </div>
     

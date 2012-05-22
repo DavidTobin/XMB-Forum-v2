@@ -5,19 +5,19 @@
         <div class="row">
             <div class="span10">
                 <div class="forum">
-                    <h1 id="active-forum-name">
-                        Latest Threads
+                    <h1>
+                        <span id="active-forum-name">{{ forumname }}</span>
                         
-                        <div class="btn-group pull-right" style="padding-right: 10px; padding-top: 8px;">
+                        <span class="btn-group pull-right" style="padding-right: 10px; padding-top: 8px;">
                             <a class="btn btn-mini dropdown-toggle no-shadow" data-toggle="dropdown" href="#">
                                 Actions
                                 <span class="caret"></span>
                             </a>
                             
                             <ul class="dropdown-menu">
-                                <li><a href="#">Create New Thread</a></li>
+                                <li><a id="active-forum-url" href="javascript://" data-url="{{ followurl }}" onclick="XMB.follow_url(this.getAttribute('data-url'))">Create New Thread</a></li>
                             </ul>
-                        </div>
+                        </span>
                     </h1>                                        
                 </div>
                 

@@ -1,6 +1,6 @@
 <tr>
     <td style="width: 50%;">
-        <span class="forum-title"><a href="{{ path('_thread', { 'slug': thread.threadid }) }}">{{ thread.name }}</a></span>                         
+        <span class="forum-title"><a href="{{ path('_thread', { 'slug': thread.threadslug }) }}">{{ thread.name }}</a></span>                         
    </td>
    <td><a href="{{ path('_home_long', { 'forum': thread.slug }) }}">{{ thread.forumname }}</a></td>
    <td><a href="#">{{ thread.username }}</a></td>

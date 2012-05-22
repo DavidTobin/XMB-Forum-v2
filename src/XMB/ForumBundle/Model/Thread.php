@@ -25,7 +25,7 @@ class Thread {
             SELECT t.*, u.*, p.* FROM thread AS t
             INNER JOIN users AS u ON (u.id = t.userid)
             INNER JOIN post AS p ON (t.id = p.threadid)
-            WHERE t.id = ?
+            WHERE t.slug = ?
             ORDER BY t.dateline DESC            
         ", array($slug));
         
@@ -35,7 +35,7 @@ class Thread {
     public function fetchAll($where="") {
         // Get threads
         $threads = $this->db->fetchAll("
-            SELECT t.*, t.id AS threadid, f.*, u.* FROM thread AS t
+            SELECT t.*, t.id AS threadid, t.slug AS threadslug, f.*, u.* FROM thread AS t
             INNER JOIN users AS u ON (t.userid = u.id)
             INNER JOIN forum AS f ON (t.forumid = f.id)
             $where

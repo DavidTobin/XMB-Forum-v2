@@ -31,13 +31,42 @@ class ThreadController extends Controller
         }
     }
     
-    public function newAction($forumid=0) {
+    public function newAction($forum=0, Request $request = null) {
         $thread = new ThreadEntity();
         
-        $form = $this->createForm(new ThreadFormType(), $thread);
+        $form = $this->createForm(new ThreadFormType(), $thread, array(
+            'forumid'   => $forum
+        ));
+        
+        if ($request->getMethod() == 'POST') {
+            $form->bindRequest($request);
+            
+            if ($form->isValid()) {
+                $user = $this->get('security.context')->getToken()->getUser();
+                
+                // Set necessary thread values
+                $thread->setUserid($user->getId());
+                $thread->setForumid($thread->getForumid()->getId());
+                
+                // Persist thread to db
+                $em = $this->getDoctrine()->getEntityManager();
+                $em->persist($thread);
+                $em->flush();   
+                
+                // Fetch and set values for the Post entity
+                $post = $thread->getPost();
+                $post->setThreadid($thread->getId());
+                $post->setUserid($user->getId());
+                                
+                $em->persist($thread->getPost());      
+                $em->flush();                                                           
+                
+                return $this->redirect($this->generateUrl('_home'));
+            }
+        }
         
         return $this->render('XMBForumBundle:Thread:new.html.twig', array(
-            'forumid'   => $forumid,
+            'forumid'   => $forum,
             'form'      => $form->createView()
         ));
     }

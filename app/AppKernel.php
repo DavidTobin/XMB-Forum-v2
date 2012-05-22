@@ -19,6 +19,8 @@ class AppKernel extends Kernel
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new Stfalcon\Bundle\TinymceBundle\StfalconTinymceBundle(),
+            new SamJ\DoctrineSluggableBundle\SamJDoctrineSluggableBundle(),
+            new FM\BbcodeBundle\FMBbcodeBundle(),
             new XMB\ForumBundle\XMBForumBundle(),            
         );
 

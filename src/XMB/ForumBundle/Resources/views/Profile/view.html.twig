@@ -7,13 +7,18 @@
 {% block content %}
     <div class="tabbable tabs-left">
         <ul class="nav nav-tabs">
-            <li><a href="#info" data-toggle="tab">A tab!</a></li>
-            <li><a href="#contact" data-toggle="tab">Another Tab!</a></li>
+            <li class="active"><a href="#info" data-toggle="tab">General Infomation</a></li>
+            <li><a href="#statuses" data-toggle="tab">Status Updates</a></li>
+            <li><a href="#contact" data-toggle="tab">Contact</a></li>
         </ul>
         
         <div class="tab-content">
             <div class="tab-pane active" id="info">
                 <p>This is the info page!</p>
+            </div>
+            
+            <div class="tab-pane" id="statuses">
+                <p>Latest statuses here!</p>
             </div>
             
             <div class="tab-pane" id="contact">
@@ -25,16 +30,19 @@
 
 {% block sidebar %}
     <div class="sidebar">
-        <div class="sidebar-info">
-            <img src="{{ asset('img/avatar-med.png') }}" alt="{{ user.username }}" style="float: left; margin-right: 10px;" />
-            
+        <div class="sidebar-info" style="text-align: center; margin-bottom: none;">
             <h4 class="glow">{{ user.username }}</h4>
+            
+            <hr />
+            
+            <img src="{{ asset('img/avatar-med.png') }}" alt="{{ user.username }}" />
+            
+            <hr />  
+                                                                  
+            <dl style="text-align: left;">  
+                <dt>Posts:</dt> <dd>2</dd>
+                <dt>Joined:</dt> <dd>{{ "now"|date('jS M, Y') }}</dd>
+            </dl>               
         </div>
-        
-        <dl class="sidebar-info">
-            <dt>Posts:</dt> <dd>2</dd>
-            <dt>Joined:</dt> <dd>{{ "now"|date('jS') }}</dd>
-        </dl>               
-        
     </div>
 {% endblock %}

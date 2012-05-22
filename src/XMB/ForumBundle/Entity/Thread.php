@@ -49,10 +49,20 @@ class Thread
      * @ORM\OneToMany(targetEntity="Users", mappedBy="userid")
      */
      protected $user;
+     
+    protected $post;
 
     
     public function __construct() {
         $this->user = new ArrayCollection();
+    }
+    
+    public function getPost() {
+        return $this->post;
+    }
+    
+    public function setPost(Post $post = null) {
+        $this->post = $post;
     }
     
     /**

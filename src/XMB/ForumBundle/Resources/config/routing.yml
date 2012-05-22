@@ -10,9 +10,17 @@ _profile:
     pattern: /profile
     defaults: { _controller: XMBForumBundle:Home:index }
     
+_thread_new_all:
+    pattern: /thread/new
+    defaults: { _controller: XMBForumBundle:Thread:new }
+    
 _thread:
     pattern: /thread/{slug}
-    defaults: { _controller: XMBForumBundle:Thread:index }
+    defaults: { _controller: XMBForumBundle:Thread:index }    
+    
+_thread_new:
+    pattern: /thread/new/{forum}
+    defaults: { _controller: XMBForumBundle:Thread:new, forum: 0 }
     
 _ajax:
     pattern: /ajax/{action}

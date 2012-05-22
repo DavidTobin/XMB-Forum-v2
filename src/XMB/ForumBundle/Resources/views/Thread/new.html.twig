@@ -1,0 +1,28 @@
+{% extends('XMBForumBundle::layout.html.twig') %}
+
+{% block breadcrumbs %}    
+    <li class="active"><a href="{{ path('_thread_new', { forum: forumid }) }}">New Thread</a></li>
+{% endblock %}
+
+{% block content %}
+    <form class="form-horizontal" action="#" {{ form_enctype(form) }} method="post">
+        <div class="container">
+            <div class="row">     
+                <div class="span2">&nbsp;</div>           
+                <div class="span8">
+                    <fieldset>
+                        <legend>New Thread</legend>
+                        
+                        <br />
+                        
+                        {{ form_widget(form) }}
+                        
+                        <div class="form-actions">
+                            <input type="submit" class="btn btn-primary" name="_submit" value="Create New Thread" />
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+    </form>        
+{% endblock %}

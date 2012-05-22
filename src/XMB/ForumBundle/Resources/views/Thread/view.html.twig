@@ -28,11 +28,11 @@
             Author: <strong>{{ thread.username }}</strong><br />
             Posted: <strong>{{ thread.dateline|date('F jS \\a\\t g:ia') }}</strong><br />
             Rating: {% if thread.rating > 0 %}
-                        <span class="badge badge-success">{{ thread.rating }}</span>
+                        <span class="badge badge-success" id="thread-rating-phone">{{ thread.rating }}</span>
                     {% elseif thread.rating < 0 %}
-                        <span class="badge badge-important">{{ thread.rating }}</span>
+                        <span class="badge badge-important" id="thread-rating-phone">{{ thread.rating }}</span>
                     {% else %}
-                        <span class="badge">{{ thread.rating }}</span>
+                        <span class="badge" id="thread-rating-phone">{{ thread.rating }}</span>
                     {% endif %}
         </small>                         
     </div>

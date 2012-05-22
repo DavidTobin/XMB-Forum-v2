@@ -11,9 +11,11 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap-responsive.min.css') }}" />        
     
     <style>
-      body {
-        padding-top: 100px;
-      }
+        @media (min-width: 768px) {
+          body {
+            padding-top: 100px;
+          }
+        }
     </style>
     
     <!--[if lt IE 9]>
@@ -178,6 +180,7 @@
                         });
                     });
                 </script>
+                {{ tinymce_init() }}
             </footer>
         </div>
     </div>

@@ -10,54 +10,113 @@
 
 {% block content %}
     
-    <div>
-        <div class="btn-group pull-right">
-            <a class="btn dropdown-toggle" data-toggle="dropdown" href="javascript://">
-                Moderation
-                <span class="caret"></span>
-            </a>
+    <div class="row">
+        <div class="span10 thread">
+            <div class="btn-group pull-right menu-fix">
+                <a class="btn btn-mini dropdown-toggle" data-toggle="dropdown" href="javascript://">
+                    Moderation
+                    <span class="caret"></span>
+                </a>
+                
+                <ul class="dropdown-menu">
+                    <li><a href="javascript://">Delete Thread</a></li>
+                </ul>
+            </div> 
             
-            <ul class="dropdown-menu">
-                <li><a href="javascript://">Delete Thread</a></li>
-            </ul>
-        </div> 
-        
-        <h2>{{ thread.name }}</h2>
-        
-        <small class="visible-phone">
-            Author: <strong>{{ thread.username }}</strong><br />
-            Posted: <strong>{{ thread.dateline|date('F jS \\a\\t g:ia') }}</strong><br />
-            Rating: {% if thread.rating > 0 %}
-                        <span class="badge badge-success" id="thread-rating-phone">{{ thread.rating }}</span>
-                    {% elseif thread.rating < 0 %}
-                        <span class="badge badge-important" id="thread-rating-phone">{{ thread.rating }}</span>
-                    {% else %}
-                        <span class="badge" id="thread-rating-phone">{{ thread.rating }}</span>
-                    {% endif %}
-        </small>                         
-    </div>
-    
-    <hr />
-    
-    <p>{{ thread.message|striptags|nl2br|bbcode_filter('xmb') }}</p>
-        
-    <div class="pull-right">
-        <div class="btn-group">
-            {% if app.user and app.user.id == thread.userid %}
-                <button class="btn">Edit</button>
-            {% endif %}
-            <button class="btn">Reply</button>
-            <button class="btn">Quote</button>
-            <button class="btn btn-success" onclick="XMB.update_thread_rating(true, {{ thread.threadid }})" data-action="{{ path('_ajax', { 'action': 'update_thread_rating' }) }}" id="rating-positive"><i class="icon-plus"></i></button>
-            <button class="btn btn-danger" onclick="XMB.update_thread_rating(false, {{ thread.threadid }})" data-action="{{ path('_ajax', { 'action': 'update_thread_rating' }) }}" id="rating-negative"><i class="icon-minus"></i></button>                    
+            <h1>{{ thread.name }}</h1>
+            
+            <small class="visible-phone">
+                Author: <strong>{{ thread.username }}</strong><br />
+                Posted: <strong>{{ thread.dateline|date('F jS \\a\\t g:ia') }}</strong><br />
+                Rating: {% if thread.rating > 0 %}
+                            <span class="badge badge-success" id="thread-rating-phone">{{ thread.rating }}</span>
+                        {% elseif thread.rating < 0 %}
+                            <span class="badge badge-important" id="thread-rating-phone">{{ thread.rating }}</span>
+                        {% else %}
+                            <span class="badge" id="thread-rating-phone">{{ thread.rating }}</span>
+                        {% endif %}
+            </small>                         
         </div>
     </div>
     
+    <div class="row">
+        <div class="span10 thread-content">
+            {{ thread.message|striptags|bbcode_filter('xmb') }}
+            
+            <br /><br />
+            
+            <p style="padding-left: 2em;"><small>{{ thread.username }}'s signature --</small></p>
+            <p style="padding-left: 3em;">{{ thread.signature|striptags|nl2br|bbcode_filter('xmb') }}</p>
+        </div>
+    </div>         
+    
+    <br />
+    
+    <div class="row">
+        <div class="span10">    
+            <div class="pull-right">
+                <div class="btn-group">
+                    {% if (app.user and app.user.id == thread.userid) or is_granted('ROLE_ADMIN') %}
+                        <button class="btn">Edit</button>
+                    {% endif %}
+                    <button class="btn">Reply</button>
+                    <button class="btn">Quote</button>
+                    <button class="btn btn-success" onclick="XMB.update_thread_rating(true, {{ thread.threadid }})" data-action="{{ path('_ajax', { 'action': 'update_thread_rating' }) }}" id="rating-positive"><i class="icon-plus"></i></button>
+                    <button class="btn btn-danger" onclick="XMB.update_thread_rating(false, {{ thread.threadid }})" data-action="{{ path('_ajax', { 'action': 'update_thread_rating' }) }}" id="rating-negative"><i class="icon-minus"></i></button>                    
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <br /><br />
+    
+    <div class="row">
+        <div class="span10 thread">
+            <h1>Replies</h1>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="span10 thread-content">
+            <div class="pull-right">
+                <h5>Date: <small>5th May, 2012 at 12:56am</small></h5>
+            </div>
+            
+            <div class="">
+                <h5>Author: <small>Admin</small></h5>                
+            </div>                        
+            
+            <br />
+            
+            oaijoi
+        </div>
+    </div>        
+    
+    <br />
+    
+    <div class="row">
+        <div class="span3">&nbsp;</div>
+        <div class="span6">
+            <form class="form-horizontal" {{ form_enctype(form) }} method="post">
+                <fieldset>
+                    <legend>Reply</legend>
+                    
+                    <br />
+                    
+                    {{ form_widget(form) }}
+                    
+                    <div class="form-actions">
+                            <input type="submit" class="btn btn-primary" name="_submit" value="Reply to Thread" />
+                        </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
 {% endblock %}
 
 {% block sidebar %}
     <dl class="sidebar-info visible-desktop">
-        <dt><strong>Author:</strong></dt> <dd><small>{{ thread.username }}</small></dd>
+        <dt><strong>Author:</strong></dt> <dd><small><a href="{{ path('_profile', {username: thread.username}) }}">{{ thread.username }}</a></small></dd>
         <dt><strong>Posted:</strong></dt> <dd><small>{{ thread.dateline|date('F jS \\a\\t g:ia') }}</small></dd>
         
         <dt><strong>Rating:</strong></dt> 

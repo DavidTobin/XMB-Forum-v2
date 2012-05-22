@@ -124,4 +124,8 @@ class Forum
     {
         return $this->description;
     }
+    
+    public function __toString() {
+        return $this->getForumname();
+    }
 }

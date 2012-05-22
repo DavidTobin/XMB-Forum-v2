@@ -58,13 +58,18 @@
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th>Who's Online? (1 User &amp; 0 Guests)</th>
+                            <th>Who's Online?</th>
                             <th>Forum Information</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td><a href="#">Admin</a></td>
+                            <td>
+                                <p>There are currently {{ online_count }} user(s) online!</p>
+                                {% for user in online %}
+                                    <a href="{{ path('_profile', { username: user.username }) }}">{{ user.username }}</a>{% if user.userid != lastonlineid %},{% endif %} 
+                                {% endfor %}
+                            </td>
                             <td>
                                 <p><small>Threads: 1 | Posts: 1 | Users: 1</small></p>
                                 <p><small>Welcome to our newest user, <a href="#">Admin</a></small></p>

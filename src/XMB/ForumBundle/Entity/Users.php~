@@ -34,4 +34,29 @@ class Users extends BaseUser
     {
         return $this->id;
     }
+    /**
+     * @var text $signature
+     */
+    private $signature;
+
+
+    /**
+     * Set signature
+     *
+     * @param text $signature
+     */
+    public function setSignature($signature)
+    {
+        $this->signature = $signature;
+    }
+
+    /**
+     * Get signature
+     *
+     * @return text 
+     */
+    public function getSignature()
+    {
+        return $this->signature;
+    }
 }

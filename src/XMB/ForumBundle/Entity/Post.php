@@ -28,7 +28,10 @@ class Post
      * @var text $message
      */
     private $message;
-
+    
+    public function __construct() {
+        $this->setParentid(0);
+    }
 
     /**
      * Get id
@@ -98,5 +101,30 @@ class Post
     public function getMessage()
     {
         return $this->message;
+    }
+    /**
+     * @var integer $parentid
+     */
+    private $parentid;
+
+
+    /**
+     * Set parentid
+     *
+     * @param integer $parentid
+     */
+    public function setParentid($parentid)
+    {
+        $this->parentid = $parentid;
+    }
+
+    /**
+     * Get parentid
+     *
+     * @return integer 
+     */
+    public function getParentid()
+    {
+        return $this->parentid;
     }
 }

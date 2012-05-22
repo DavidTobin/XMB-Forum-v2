@@ -7,6 +7,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use XMB\ForumBundle\Form\Type\ThreadFormType;
 use XMB\ForumBundle\Entity\Thread AS ThreadEntity;
+use XMB\ForumBundle\Form\Type\ThreadReplyFormType;
+use XMB\ForumBundle\Entity\Post;
 use XMB\ForumBundle\Model\Thread;
 
 
@@ -16,7 +18,7 @@ class ThreadController extends Controller
     public function indexAction($slug, Request $request)
     {
         $thread = new Thread($this->get('database_connection'));
-        $thread = $thread->fetchThread($slug);
+        $thread = $thread->fetchThread($slug);                
         
         if ($request->isXmlHttpRequest()) {
             $response = new Response(json_encode($thread));
@@ -25,8 +27,13 @@ class ThreadController extends Controller
             
             return $response;
         } else {
+            // Generate reply form
+            $post = new Post();            
+            $form = $this->createForm(new ThreadReplyFormType(), $post);
+            
             return $this->render('XMBForumBundle:Thread:view.html.twig', array(
-                'thread'    => $thread
+                'thread'    => $thread,
+                'form'      => $form->createView()
             ));
         }
     }
@@ -61,7 +68,9 @@ class ThreadController extends Controller
                 $em->persist($thread->getPost());      
                 $em->flush();                                                           
                 
-                return $this->redirect($this->generateUrl('_home'));
+                return $this->redirect($this->generateUrl('_thread', array(
+                    'slug'  => $thread->getSlug()
+                )));
             }
         }
         

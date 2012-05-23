@@ -14,7 +14,7 @@ class PostFormType extends AbstractType {
             'attr'  => array(
                 'class'         => 'tinymce',
                 'data-theme'    => 'bbcode'
-            )
+            )            
         ));        
     }
     

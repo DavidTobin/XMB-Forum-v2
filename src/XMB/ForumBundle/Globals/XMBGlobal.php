@@ -63,12 +63,17 @@ class XMBGlobal extends Twig_Extension {
     public function getGlobals() {
         $notifications = new Notifications($this->doctrine, $this->container);
         
+        $lastonlineid = 0;
+        if (is_object(end($this->online))) {
+            $lastonlineid = end($this->online)->getUserid();
+        }
+        
         return array(
             'notification_count'    => $notifications->getNotificationsCount(),
             'notifications'         => $notifications->fetchUserNotifications(),
             'online'                => $this->online,
             'online_count'          => count($this->online),
-            'lastonlineid'          => end($this->online)->getUserid()
+            'lastonlineid'          => $lastonlineid
         );
     }
     

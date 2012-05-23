@@ -163,14 +163,7 @@ body {
   font-size: 13px;
   line-height: 18px;
   color: #555;
-  background: #363636; /* Old browsers */
-  background: -moz-linear-gradient(-45deg,  #363636 1%, #d9d9d9 98%); /* FF3.6+ */
-  background: -webkit-gradient(linear, left top, right bottom, color-stop(1%,#363636), color-stop(98%,#d9d9d9)); /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(-45deg,  #363636 1%,#d9d9d9 98%); /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(-45deg,  #363636 1%,#d9d9d9 98%); /* Opera 11.10+ */
-  background: -ms-linear-gradient(-45deg,  #363636 1%,#d9d9d9 98%); /* IE10+ */
-  background: linear-gradient(-45deg,  #363636 1%,#d9d9d9 98%); /* W3C */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#363636', endColorstr='#d9d9d9',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+  background: white;
   min-height: 715px;
   padding-top: 60px;
 }
@@ -244,11 +237,15 @@ td p small {
 }
 
 .content {
-    background: #fff;
+    background: white;
+    border: 1px solid #ddd;
+    -webkit-box-shadow: 4px 6px 15px rgba(21, 20, 23, 0.25);
+    -moz-box-shadow:    4px 6px 15px rgba(21, 20, 23, 0.25);
+    box-shadow:         4px 6px 15px rgba(21, 20, 23, 0.25);
     padding: 1em;
-    -webkit-border-radius: 5px;
+    /*-webkit-border-radius: 5px;
     -moz-border-radius: 5px;
-    border-radius: 5px;
+    border-radius: 5px;*/
 }
 
 label[for=thread_post] {
@@ -3750,7 +3747,7 @@ input[type="submit"].btn.btn-mini {
 
 .navbar-inner {
   min-height: 40px;
-  padding: 1.5em;
+  padding: 2em;
   padding-right: 4px;
   padding-left: 10px;
   color: #16A3DD;

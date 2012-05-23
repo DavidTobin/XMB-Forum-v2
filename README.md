@@ -21,29 +21,16 @@ Example:
 Step 3
 ------------
 
-Initialise a git repository by running the following command:
+Clone the files by running the following command:
 
-git init
+git clone https://github.com/DavidTobin/XMB-Forum-v2/
+
 
 Step 4
 ------------
-
-Add this repository by running the following command.
-
-git remote add xmb git@github.com:DavidTobin/XMB-Forum-v2
-
-Step 5
-------------
-
-Pull the files into your local repository by running the following command:
-
-git pull xmb master
-
-Step 6
-------------
 Rename /app/config/parameters.ini.dist to /app/config/parameters.ini
 
-Step 7
+Step 5
 ------------
 
 Change the directory to /bin/ and install the vendors by running the commands:
@@ -51,7 +38,7 @@ Change the directory to /bin/ and install the vendors by running the commands:
 cd bin
 php vendors install --reinstall
 
-Step 8
+Step 6
 ------------
 
 Change the directory to /app and update database stuffs by running the following commands:
@@ -60,7 +47,7 @@ cd app
 php console doctrine:database:create
 php console doctrine:schema:update --force
 
-Step 9
+Step 7
 ------------
 
 Run the following query on the newly created database:

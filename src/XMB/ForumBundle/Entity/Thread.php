@@ -58,6 +58,7 @@ class Thread implements SluggableInterface
         $this->user = new ArrayCollection();
         
         $this->setDateline(time());
+        $this->setLastactivity(time());
         $this->setRating(0);
         $this->setStatus(1);
     }
@@ -244,5 +245,70 @@ class Thread implements SluggableInterface
     public function getForumid()
     {
         return $this->forumid;
+    }
+    /**
+     * @var integer $lastactivity
+     */
+    private $lastactivity;
+
+
+    /**
+     * Set lastactivity
+     *
+     * @param integer $lastactivity
+     */
+    public function setLastactivity($lastactivity)
+    {
+        $this->lastactivity = $lastactivity;
+    }
+
+    /**
+     * Get lastactivity
+     *
+     * @return integer 
+     */
+    public function getLastactivity()
+    {
+        return $this->lastactivity;
+    }
+    /**
+     * @var integer $replies
+     */
+    private $replies;
+
+    /**
+     * @var integer $threadid
+     */
+    private $threadid;
+
+
+    /**
+     * Set replies
+     *
+     * @param integer $replies
+     */
+    public function setReplies($replies)
+    {
+        $this->replies = $replies;
+    }
+
+    /**
+     * Get replies
+     *
+     * @return integer 
+     */
+    public function getReplies()
+    {
+        return $this->replies;
+    }
+
+    /**
+     * Get threadid
+     *
+     * @return integer 
+     */
+    public function getThreadid()
+    {
+        return $this->threadid;
     }
 }

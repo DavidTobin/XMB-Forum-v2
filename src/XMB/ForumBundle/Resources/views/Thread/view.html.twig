@@ -40,7 +40,7 @@
     </div>
     
     <div class="row">
-        <div class="span10 thread-content">
+        <div class="span10 thread-content shadow">
             {{ thread.message|striptags|bbcode_filter('xmb') }}
             
             <br /><br />
@@ -68,31 +68,40 @@
         </div>
     </div>
     
-    <br /><br />
+    <br /><br />    
     
-    <div class="row">
-        <div class="span10 thread">
-            <h1>Replies</h1>
+    {% if replies %}
+        <div class="row">
+            <div class="span10 thread">
+                <h1>Replies</h1>
+            </div>
         </div>
-    </div>
-    
-    <div class="row">
-        <div class="span10 thread-content">
-            <div class="pull-right">
-                <h5>Date: <small>5th May, 2012 at 12:56am</small></h5>
+        
+        {% for reply in replies %}
+            <div class="row">
+                <div class="span10 thread-content shadow">
+                    <div class="pull-right">
+                        <h5>Date: <small>{{ reply.postdateline|date('F jS \\a\\t g:ia') }}</small></h5>
+                    </div>
+                    
+                    <div class="">
+                        <h5>Author: <small><a href="{{ path('_profile', {username: reply.username}) }}">{{ reply.username }}</a></small></h5>                
+                    </div>                        
+                    
+                    <br />
+                    
+                    {{ reply.message|striptags|bbcode_filter('xmb') }}
+                    
+                    <br /><br />
+            
+                    <p style="padding-left: 2em;"><small>{{ thread.username }}'s signature --</small></p>
+                    <p style="padding-left: 3em;">{{ thread.signature|striptags|nl2br|bbcode_filter('xmb') }}</p>
+                </div>
             </div>
             
-            <div class="">
-                <h5>Author: <small>Admin</small></h5>                
-            </div>                        
-            
             <br />
-            
-            oaijoi
-        </div>
-    </div>        
-    
-    <br />
+        {% endfor %}
+    {% endif %}        
     
     <div class="row">
         <div class="span3">&nbsp;</div>

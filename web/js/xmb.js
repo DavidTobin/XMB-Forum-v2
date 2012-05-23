@@ -110,6 +110,17 @@ var XMB = {
                 $('#active-forum-name').text(data.forumname);
                 $('#active-forum-url').attr('data-url', data.followurl);
                 
+                var error = $('#home_error');
+                var error_container = $('#home_error_container');
+                
+                if (data.error.length) {                    
+                    error.text(data.error);
+                    error_container.fadeIn();
+                    $()
+                } else {
+                    error_container.fadeOut();
+                }
+                
                 break;
             
             case 'thread_rating_updated':

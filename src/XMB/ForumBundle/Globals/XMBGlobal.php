@@ -73,11 +73,7 @@ class XMBGlobal extends Twig_Extension {
             'notifications'         => $notifications->fetchUserNotifications(),
             'online'                => $this->online,
             'online_count'          => count($this->online),
-<<<<<<< HEAD
             'lastonlineid'          => $lastonlineid
-=======
-            'lastonlineid'          => end($this->online)->getUserid()
->>>>>>> 6e8e6d90848027e339116c6d92a149ff98e5552e
         );
     }
     

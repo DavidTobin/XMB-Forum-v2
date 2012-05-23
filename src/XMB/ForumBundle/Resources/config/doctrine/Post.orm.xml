@@ -2,11 +2,12 @@
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
   <entity name="XMB\ForumBundle\Entity\Post">
     <change-tracking-policy>DEFERRED_IMPLICIT</change-tracking-policy>
-    <id name="id" type="integer" column="id">
+    <id name="postid" type="integer" column="id">
       <generator strategy="AUTO"/>
     </id>
     <field name="threadid" type="integer" column="threadid"/>
     <field name="userid" type="integer" column="userid"/>
+    <field name="postdateline" type="integer" column="postdateline"/>
     <field name="parentid" type="integer" column="parentid"/>
     <field name="message" type="text" column="message"/>
     <lifecycle-callbacks/>

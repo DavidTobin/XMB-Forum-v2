@@ -17,11 +17,15 @@ class ThreadController extends Controller
     
     public function indexAction($slug, Request $request)
     {
-        $thread = new Thread($this->get('database_connection'));
-        $thread = $thread->fetchThread($slug);                
+        $threadm    = new Thread($this->get('database_connection'));
+        $thread     = $threadm->fetchThread($slug); 
+        $replies    = $threadm->fetchReplies($thread);           
         
         if ($request->isXmlHttpRequest()) {
-            $response = new Response(json_encode($thread));
+            $response = new Response(json_encode(array(
+                'thread'    => $thread,
+                'replies'   => $replies               
+            )));
             
             $response->headers->set('Content-Type', 'application/json');
             
@@ -31,8 +35,40 @@ class ThreadController extends Controller
             $post = new Post();            
             $form = $this->createForm(new ThreadReplyFormType(), $post);
             
+            if ($request->getMethod() == 'POST') {
+                $form->bindRequest($request);
+                
+                if ($form->isValid()) {
+                    // Get entity manager
+                    $em = $this->getDoctrine()->getEntityManager();
+                    
+                    $user = $this->get('security.context')->getToken()->getUser();
+                    
+                    // Set necessary post values
+                    $post->setUserid($user->getId());
+                    $post->setThreadid($thread['threadid']);
+                    $post->setParentid($thread['id']);
+                                    
+                    $em->persist($post);      
+                    $em->flush();
+                    
+                    // Update thread last activity
+                    $threadentity = $em->getRepository('XMBForumBundle:Thread')
+                        ->find($thread['threadid']);
+                    
+                    $threadentity->setLastactivity(time());
+                    $em->persist($threadentity);
+                    $em->flush();                                                               
+                    
+                    return $this->redirect($this->generateUrl('_thread', array(
+                        'slug'  => $thread['slug']
+                    )));
+                }
+            }
+            
             return $this->render('XMBForumBundle:Thread:view.html.twig', array(
                 'thread'    => $thread,
+                'replies'   => $replies,
                 'form'      => $form->createView()
             ));
         }
@@ -78,9 +114,5 @@ class ThreadController extends Controller
             'forumid'   => $forum,
             'form'      => $form->createView()
         ));
-    }
-    
-    public function topAction() {
-        
     }
 }

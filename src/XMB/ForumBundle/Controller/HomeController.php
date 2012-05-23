@@ -46,7 +46,11 @@ class HomeController extends Controller
         
         $error = "";
         if (!$threads) {
-            $error = "Welcome to your new forum!";
+            if ($forumid == 0) {
+                $error = "Welcome to your new forum! Create a new thread using the actions menu to remove this message!";
+            } else {
+                $error = "This forum doesn't have any threads! Go ahead and create one using the actions menu!";
+            }
         }
         
         if ($request->isXmlHttpRequest()) {

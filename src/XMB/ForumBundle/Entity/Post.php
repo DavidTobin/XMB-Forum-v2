@@ -30,7 +30,9 @@ class Post
     private $message;
     
     public function __construct() {
+        // Set default values
         $this->setParentid(0);
+        $this->setPostdateline(time());
     }
 
     /**
@@ -126,5 +128,70 @@ class Post
     public function getParentid()
     {
         return $this->parentid;
+    }
+    /**
+     * @var integer $dateline
+     */
+    private $dateline;
+
+
+    /**
+     * Set dateline
+     *
+     * @param integer $dateline
+     */
+    public function setDateline($dateline)
+    {
+        $this->dateline = $dateline;
+    }
+
+    /**
+     * Get dateline
+     *
+     * @return integer 
+     */
+    public function getDateline()
+    {
+        return $this->dateline;
+    }
+    /**
+     * @var integer $postdateline
+     */
+    private $postdateline;
+
+
+    /**
+     * Set postdateline
+     *
+     * @param integer $postdateline
+     */
+    public function setPostdateline($postdateline)
+    {
+        $this->postdateline = $postdateline;
+    }
+
+    /**
+     * Get postdateline
+     *
+     * @return integer 
+     */
+    public function getPostdateline()
+    {
+        return $this->postdateline;
+    }
+    /**
+     * @var integer $postid
+     */
+    private $postid;
+
+
+    /**
+     * Get postid
+     *
+     * @return integer 
+     */
+    public function getPostid()
+    {
+        return $this->postid;
     }
 }

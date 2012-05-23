@@ -4,11 +4,18 @@
     <div class="container" style="text-align: center;">
         <div class="row">
             <div class="span10">
+                
+                <div class="alert alert-error" id="home_error_container" {% if error == false %}style="display: none;"{% endif %}>
+                    <button class="close" data-dismiss="alert"><i class="icon-remove-sign" style="vertical-align: middle;"></i></button>
+                        
+                    <strong>Alert: </strong> <span id="home_error">{{ error }}</span>
+                </div>                
+            
                 <div class="forum">
                     <h1>
                         <span id="active-forum-name">{{ forumname }}</span>
                         
-                        <span class="btn-group pull-right" style="padding-right: 10px; padding-top: 8px;">
+                        <span class="btn-group pull-right menu-small" style="padding-right: 10px; padding-top: 8px;">
                             <a class="btn btn-mini dropdown-toggle no-shadow" data-toggle="dropdown" href="#">
                                 Actions
                                 <span class="caret"></span>
@@ -21,7 +28,7 @@
                     </h1>                                        
                 </div>
                 
-                <table class="table table-striped">
+                <table class="table table-striped shadow">
                     <thead>
                         <tr>
                             <th></th>
@@ -55,7 +62,7 @@
                     <h1>Statistics</h1>
                 </div>
                 
-                <table class="table table-striped">
+                <table class="table table-striped shadow">
                     <thead>
                         <tr>
                             <th>Who's Online?</th>
@@ -64,15 +71,15 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>
+                            <td style="width: 50%;">
                                 <p>There are currently {{ online_count }} user(s) online!</p>
                                 {% for user in online %}
                                     <a href="{{ path('_profile', { username: user.username }) }}">{{ user.username }}</a>{% if user.userid != lastonlineid %},{% endif %} 
                                 {% endfor %}
                             </td>
                             <td>
-                                <p><small>Threads: 1 | Posts: 1 | Users: 1</small></p>
-                                <p><small>Welcome to our newest user, <a href="#">Admin</a></small></p>
+                                <p>We have <strong>1 user(s)</strong> with <strong>1 post(s)</strong> in <strong>1 thread(s)</strong>!</p>
+                                <p>Welcome to our newest user, <a href="#">Admin</a></p>
                             </td>
                         </tr>
                     </tbody>

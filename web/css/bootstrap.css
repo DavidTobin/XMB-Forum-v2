@@ -252,6 +252,13 @@ label[for=thread_post] {
     display: none !important;
 }
 
+.shadow {
+    border: 1px solid #ddd;
+    -webkit-box-shadow: 4px 6px 15px rgba(21, 20, 23, 0.25);
+    -moz-box-shadow:    4px 6px 15px rgba(21, 20, 23, 0.25);
+    box-shadow:         4px 6px 15px rgba(21, 20, 23, 0.25);
+}
+
 .forum-thread {
     background: rgb(255,255,255);
     background: -moz-linear-gradient(top,  rgb(255,255,255) 0%, rgb(246,246,246) 47%, rgb(237,237,237) 100%);
@@ -292,7 +299,7 @@ label[for=thread_post] {
     text-shadow: #16A3DD 0px 0px 10px;
 }
 
-.forum > h1 > span {
+.forum > h1 > .menu-small {
     text-shadow: none;
     font-size: 11px;
     text-align: center;
@@ -306,7 +313,7 @@ label[for=thread_post] {
     -moz-border-radius-topright: 4px;
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
-    padding-left: 15px;
+    padding-left: 14px;
 }
 
 .thread > h1 {
@@ -323,10 +330,9 @@ label[for=thread_post] {
 }
 
 .thread-content {
-    background: whiteSmoke;
+    background: white;
     padding: 6px; /* Half of .thread's padding */
-    border: 2px solid #eee;
-    -webkit-border-radius: 0 0 4px 4px;
+    border: 1px solid #ddd;
 }
 
 .menu-fix {

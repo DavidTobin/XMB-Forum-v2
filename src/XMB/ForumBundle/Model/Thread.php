@@ -25,11 +25,22 @@ class Thread {
             SELECT t.*, u.*, p.* FROM thread AS t
             INNER JOIN users AS u ON (u.id = t.userid)
             INNER JOIN post AS p ON (t.id = p.threadid)
-            WHERE t.slug = ?
+            WHERE t.slug = ? AND p.parentid = 0
             ORDER BY t.dateline DESC            
         ", array($slug));
         
         return $thread->fetch();
+    }
+    
+    public function fetchReplies($thread) {
+        $replies = $this->db->executeQuery("
+            SELECT u.*, p.* FROM post AS p
+            INNER JOIN users AS u ON (u.id = p.userid)
+            WHERE p.parentid > 0 AND p.threadid = ?
+            ORDER BY p.postdateline ASC
+        ", array($thread['threadid']));
+        
+        return $replies->fetchAll();
     }
     
     public function fetchAll($where="") {
@@ -39,7 +50,7 @@ class Thread {
             INNER JOIN users AS u ON (t.userid = u.id)
             INNER JOIN forum AS f ON (t.forumid = f.id)
             $where
-            ORDER BY t.dateline DESC
+            ORDER BY t.lastactivity DESC
             LIMIT 0,15                      
         ");
         

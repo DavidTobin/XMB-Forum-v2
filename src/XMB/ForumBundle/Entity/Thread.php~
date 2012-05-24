@@ -61,6 +61,7 @@ class Thread implements SluggableInterface
         $this->setLastactivity(time());
         $this->setRating(0);
         $this->setStatus(1);
+        $this->setReplies(0);
     }
     
     public function getPost() {
@@ -270,5 +271,35 @@ class Thread implements SluggableInterface
     public function getLastactivity()
     {
         return $this->lastactivity;
+    }
+    /**
+     * @var integer $replies
+     */
+    private $replies;
+
+    /**
+     * @var integer $threadid
+     */
+    private $threadid;
+
+
+    /**
+     * Set replies
+     *
+     * @param integer $replies
+     */
+    public function setReplies($replies)
+    {
+        $this->replies = $replies;
+    }
+
+    /**
+     * Get replies
+     *
+     * @return integer 
+     */
+    public function getReplies()
+    {
+        return $this->replies;
     }
 }

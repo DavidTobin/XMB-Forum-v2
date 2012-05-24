@@ -179,4 +179,19 @@ class Post
     {
         return $this->postdateline;
     }
+    /**
+     * @var integer $postid
+     */
+    private $postid;
+
+
+    /**
+     * Get postid
+     *
+     * @return integer 
+     */
+    public function getPostid()
+    {
+        return $this->postid;
+    }
 }

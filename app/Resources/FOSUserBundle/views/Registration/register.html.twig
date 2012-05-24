@@ -1,25 +1,31 @@
 {% extends('XMBForumBundle::layout.html.twig') %}
 
+{% block content_length %}12{% endblock %}
+
+{% block breadcrumbs %}
+    <li class="active"><a href="{{ path('fos_user_registration_register') }}">Registration</a></li>
+{% endblock %}
+
 {% block content %}
     <form class="form-horizontal" action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="post" class="fos_user_registration_register">
-        <div class="container">
-            <div class="row">
-                <div class="span3">&nbsp;</div>
-                <div class="span6">
-                    <fieldset>
-                        <legend>Registration</legend>
-                        
-                        <br />
-                        
-                        {{ form_widget(form) }}
-                        
-                        <div class="form-actions">
-                            <input type="submit" class="btn btn-primary" name="_submit" value="Complete Registration" />
-                        </div>
-                    </fieldset>
-                </div>
-                <div class="span3">&nbsp;</div>
+        <hr />
+        
+        <div class="row">
+            <div class="span3">&nbsp;</div>
+            <div class="span6">
+                <fieldset>
+                    <legend>Registration</legend>
+                    
+                    <br />
+                    
+                    {{ form_widget(form) }}
+                    
+                    <div class="form-actions">
+                        <input type="submit" class="btn btn-primary" name="_submit" value="Complete Registration" />
+                    </div>
+                </fieldset>
             </div>
+            <div class="span3">&nbsp;</div>
         </div>
     </form>
 {% endblock %}

@@ -64,13 +64,17 @@
                         </dl>
                     </div>
                     
-                    <div class="span9">            
+                    <div class="span9">                                                          
                         {{ thread.message|striptags|bbcode_filter('xmb') }}
                         
                         <br /><br />
                         
                         <p style="padding-left: 2em;"><small>{{ thread.username }}'s signature --</small></p>
                         <p style="padding-left: 3em;">{{ thread.signature|striptags|nl2br|bbcode_filter('xmb') }}</p>
+                        
+                        <div class="pull-right">
+                            <h5>Posted: <small>{{ thread.dateline|date('F jS \\a\\t g:ia') }}</small></h5>
+                        </div>  
                     </div>
                 </div>                                
             </div>
@@ -108,22 +112,32 @@
             <div class="row">
                 <div class="span12">
                     <div class="thread-content">
-                        <div class="pull-right">
-                            <h5>Date: <small>{{ reply.postdateline|date('F jS \\a\\t g:ia') }}</small></h5>
+                        <div class="row">
+                            <div class="span2 thread-profile">
+                                <strong><a href="{{ path('_profile', {username: thread.username}) }}">{{ thread.username }}</a></strong>
+                                
+                                <dl class="sidebar-info visible-desktop" style="margin-top: 0;">
+                                    <dt><strong>Location:</strong></dt> <dd><small>Ireland</small></dd>
+                                    <dt><strong>Posts:</strong></dt> <dd><small>1</small></dd>
+                                                                        
+                                </dl>
+                            </div>
+                            
+                            <div class="span9">                                                                                                                                           
+                                <br />
+                                
+                                {{ reply.message|striptags|bbcode_filter('xmb') }}
+                                
+                                <br /><br />
+                        
+                                <p style="padding-left: 2em;"><small>{{ reply.username }}'s signature --</small></p>
+                                <p style="padding-left: 3em;">{{ reply.signature|striptags|nl2br|bbcode_filter('xmb') }}</p>
+                                
+                                <div class="pull-right">
+                                    <h5>Posted: <small>{{ reply.postdateline|date('F jS \\a\\t g:ia') }}</small></h5>
+                                </div>  
+                            </div>
                         </div>
-                        
-                        <div class="">
-                            <h5>Author: <small><a href="{{ path('_profile', {username: reply.username}) }}">{{ reply.username }}</a></small></h5>                
-                        </div>                        
-                        
-                        <br />
-                        
-                        {{ reply.message|striptags|bbcode_filter('xmb') }}
-                        
-                        <br /><br />
-                
-                        <p style="padding-left: 2em;"><small>{{ thread.username }}'s signature --</small></p>
-                        <p style="padding-left: 3em;">{{ thread.signature|striptags|nl2br|bbcode_filter('xmb') }}</p>
                     </div>
                 </div>
             </div>
@@ -133,20 +147,26 @@
     {% endif %}        
     
     <div class="row">
-        <div class="span3">&nbsp;</div>
-        <div class="span6">
+        <div class="span12">
             <form class="form-horizontal" {{ form_enctype(form) }} method="post">
-                <fieldset>
-                    <legend>Reply</legend>
-                    
-                    <br />
-                    
-                    {{ form_widget(form) }}
-                    
-                    <div class="form-actions">
-                            <input type="submit" class="btn btn-primary" name="_submit" value="Reply to Thread" />
-                        </div>
-                </fieldset>
+                <hr />
+                
+                <div class="row">
+                    <div class="span2">&nbsp;</div>
+                    <div class="span9">            
+                        <fieldset>
+                            <legend>Reply</legend>
+                            
+                            <br />
+                            
+                            {{ form_widget(form) }}
+                            
+                            <div class="form-actions">
+                                    <input type="submit" class="btn btn-primary" name="_submit" value="Reply to Thread" />
+                                </div>
+                        </fieldset>            
+                    </div>
+                </div>  
             </form>
         </div>
     </div>

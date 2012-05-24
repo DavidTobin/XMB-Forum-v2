@@ -63,12 +63,7 @@
                                 <li><a href="{{ path('fos_user_security_logout') }}"><i class="icon-off icon-white"></i> Logout</a></li>  
                             {% endif %}                                                                                                                                                                                               
                         </ul>
-                    </div>
-                    
-                    <span class="navbar-text pull-right visible-desktop" style="padding-right: 15px;">
-                        <small>Status: <a href="javascript://" style="color: orange;" rel="tooltip" title="{{ xmb_name }} is currently in {{ xmb_release }}-testing mode!">{{ xmb_release }}</a></small>
-                    </span>
-                    
+                    </div>                                                            
                 </div>
             </div>
         </div> 
@@ -111,7 +106,7 @@
                 </div>
                 
                 <div class="center">
-                    &copy; {{ "now"|date('Y') }} <strong><a href="http://xmbforum2.com">{{ xmb_name }} {{ xmb_version }} {{ xmb_release }}</a></strong>
+                    <strong><a href="http://xmbforum2.com">{{ xmb_name }} {{ xmb_version }} {{ xmb_release }}</a></strong>
                 </div>                
             </div>
             

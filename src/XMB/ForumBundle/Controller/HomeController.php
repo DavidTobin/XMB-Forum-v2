@@ -19,6 +19,8 @@ class HomeController extends Controller
                 
         $where = '';
         
+        $user = $this->get('security.context')->getToken()->getUser();
+        
         $forumname  = 'Latest Threads';
         $forumid    = 0;
         if ($forum) {

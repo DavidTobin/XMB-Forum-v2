@@ -37,16 +37,10 @@
                         <ul class="nav">
                             {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                                 <li><a href="javascript://" class="dropdown-toggle no-border" data-toggle="dropdown">
-                                    <span class="badge {% if notification_count > 0 %}badge-success{% endif %}">{{ notification_count }}</span></a>
+                                    <span class="badge {% if 0> 0 %}badge-success{% endif %}">0</span></a>
                                     
                                     <ul class="dropdown-menu" id="notifications">
-                                        {% if notification_count == 0 %}
-                                            <li><a>You currently have <strong>0</strong> notifications!</a></li>
-                                        {% else %}
-                                            {% for notification in notifications %}
-                                                <li><a>{{ notification.type }}</a></li>
-                                            {% endfor %}
-                                        {% endif %}
+                                        
                                     </ul>  
                                 </li> 
                             {% endif %}
@@ -56,6 +50,7 @@
                                 <li><a href="{{ path('fos_user_security_login') }}"><i class="icon-user icon-white"></i> Login</a></li>
                             {% else %}                            
                                 <li><a href="{{ path('_profile', { username: app.user.username }) }}"><i class="icon-user icon-white"></i> {{ app.user.username }}</a></li> 
+                                <li><a href="{{ path('_messages') }}"><i class="icon-comment icon-white"></i> Messages</a></li>
                                 <li><a href="#"><i class="icon-cog icon-white"></i> Settings</a></li>                                  
                             {% endif %}                                                        
                             

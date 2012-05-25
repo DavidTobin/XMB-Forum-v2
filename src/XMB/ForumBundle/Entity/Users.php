@@ -21,9 +21,15 @@ class Users extends BaseUser
     
     /**
      * @ORM\ManyToOne(targetEntity="Thread", inversedBy="user")
-     * @ORM\JoinColumn(name="userid", referencedColumnName="id")
+     * @ORM\JoinColumn(name="id", referencedColumnName="id")
      */
     protected $thread;
+    
+    public function __construct() {
+        $userid = $this->getId();
+        
+        $this->setUserid($userid);
+    }
     
     /**
      * Get id
@@ -58,5 +64,20 @@ class Users extends BaseUser
     public function getSignature()
     {
         return $this->signature;
+    }
+    /**
+     * @var integer $userid
+     */
+    private $userid;
+
+
+    /**
+     * Get userid
+     *
+     * @return integer 
+     */
+    public function getUserid()
+    {
+        return $this->userid;
     }
 }

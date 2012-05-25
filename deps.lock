@@ -14,7 +14,8 @@ SensioDistributionBundle 41a6c5caed65f02bb09c95a90579f047616471fd
 SensioGeneratorBundle 83b768a487a6878f2bc2ad6859bd61a3651a7885
 AsseticBundle v1.0.1
 FOSUserBundle 1.2.0
-TinymceBundle v0.2.0
+TinymceBundle c4d1ffd17c480a97b23497daf4952b933a75dc7d
 DoctrineSluggableBundle cc3dc98457a723b69827d47a0ca5cb6655c699ee
 php-decoda 3.3.3
 FMBbcodeBundle 2c5ad21d8eb90983c7c58c65a633da8759ab063a
+merkNotificationBundle 87bb0ae659aafcd9e750fb9a91389028c2772953

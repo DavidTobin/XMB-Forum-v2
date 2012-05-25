@@ -29,3 +29,7 @@ _ajax:
 _profile:
     pattern: /profile/{username}
     defaults: { _controller: XMBForumBundle:Profile:index }
+    
+_messages:
+    pattern: /messages
+    defaults: { _controller: XMBForumBundle:Messages:index }

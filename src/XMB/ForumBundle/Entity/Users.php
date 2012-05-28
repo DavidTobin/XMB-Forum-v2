@@ -23,13 +23,7 @@ class Users extends BaseUser
      * @ORM\ManyToOne(targetEntity="Thread", inversedBy="user")
      * @ORM\JoinColumn(name="id", referencedColumnName="id")
      */
-    protected $thread;
-    
-    public function __construct() {
-        $userid = $this->getId();
-        
-        $this->setUserid($userid);
-    }
+    protected $thread;    
     
     /**
      * Get id

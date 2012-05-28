@@ -52,11 +52,14 @@ class ThreadController extends Controller
                     $em->persist($post);      
                     $em->flush();
                     
-                    // Update thread last activity
+                    // Update thread last activity and replies
                     $threadentity = $em->getRepository('XMBForumBundle:Thread')
                         ->find($thread['threadid']);
                     
+                    $replies = $threadentity->getReplies() + 1;
+                    
                     $threadentity->setLastactivity(time());
+                    $threadentity->setReplies($replies);
                     $em->persist($threadentity);
                     $em->flush();                                                               
                     

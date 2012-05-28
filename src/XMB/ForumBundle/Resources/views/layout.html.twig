@@ -19,7 +19,7 @@
     </style>
     
     <!--[if lt IE 9]>
-      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 </head>
 <body>
@@ -31,7 +31,7 @@
                         <span class="icon-arrow-down"></span>
                     </a> 
                     
-                    <div class="brand"><a href="{{ path('_home') }}">{{ xmb_name }}</a> <small>{{ xmb_release }} Version 1.0.0</small></div>                                        
+                    <div class="brand"><a href="{{ path('_home') }}">{{ xmb_name }}</a> <small>{{ xmb_release }} Version</small></div>                                        
                     
                     <div class="nav-collapse">
                         <ul class="nav">
@@ -40,7 +40,7 @@
                                     <span class="badge {% if 0> 0 %}badge-success{% endif %}">0</span></a>
                                     
                                     <ul class="dropdown-menu" id="notifications">
-                                        
+                                        <li><a href="#">You current have 0 notifications!</a></li>
                                     </ul>  
                                 </li> 
                             {% endif %}

@@ -105,11 +105,18 @@ var XMB = {
                     html += data.threads[i];    
                 }
                 
+                // Alter the thread list
                 $('#thread-list').html(html);
                 
+                // Alter a few names which contain previous forum name.
                 $('#active-forum-name').text(data.forumname);
+                $('#breadcrumbs-forumname').text(data.forumname);
                 $('#active-forum-url').attr('data-url', data.followurl);
                 
+                // Change page title to reflect new forum
+                document.title = data.forumname;
+                
+                // Show any errors returned.            
                 var error = $('#home_error');
                 var error_container = $('#home_error_container');
                 
@@ -131,16 +138,16 @@ var XMB = {
                     rating.text(data.rating);
                     rating_phone.text(data.rating);
                     
-                    if (data.rating == 1) {
+                    if (data.rating == 1) { // Going from gray to green
                         rating.addClass('badge-success');
                         rating_phone.addClass('badge-success');
-                    } else if (data.rating == 0) {
+                    } else if (data.rating == 0) { // Going from red/green to gray
                         rating.removeClass('badge-success');
                         rating.removeClass('badge-important');
                         
                         rating_phone.removeClass('badge-success');
                         rating_phone.removeClass('badge-important');
-                    } else if (data.rating == -1) {
+                    } else if (data.rating == -1) { // Going from gray to red
                         rating.addClass('badge-important');
                         rating_phone.addClass('badge-important');                    
                     }

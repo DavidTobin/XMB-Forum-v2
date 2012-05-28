@@ -353,6 +353,17 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#011e25', end
     text-align: center;
 }
 
+.thread-information {
+    background: #EBF0F3;
+    padding: 1em;
+    padding-bottom: 0;
+    margin-left: 25px;
+    vertical-align: middle;
+    -webkit-box-shadow: 3px 3px 4px rgba(21, 10, 13, 0.25);
+    -moz-box-shadow:    3px 3px 4px rgba(21, 10, 13, 0.25);
+    box-shadow:         3px 3px 4px rgba(21, 10, 13, 0.25);
+}
+
 .thread-content {
     background: white;
     padding: 10px; /* Half of .thread's padding */
@@ -389,14 +400,13 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#011e25', end
 
 .sidebar {
     background: #011e25; /* Old browsers */
-background: -moz-linear-gradient(45deg,  #011e25 0%, #011215 100%); /* FF3.6+ */
-background: -webkit-gradient(linear, left bottom, right top, color-stop(0%,#011e25), color-stop(100%,#011215)); /* Chrome,Safari4+ */
-background: -webkit-linear-gradient(45deg,  #011e25 0%,#011215 100%); /* Chrome10+,Safari5.1+ */
-background: -o-linear-gradient(45deg,  #011e25 0%,#011215 100%); /* Opera 11.10+ */
-background: -ms-linear-gradient(45deg,  #011e25 0%,#011215 100%); /* IE10+ */
-background: linear-gradient(45deg,  #011e25 0%,#011215 100%); /* W3C */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#011e25', endColorstr='#011215',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
-
+    background: -moz-linear-gradient(45deg,  #011e25 0%, #011215 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left bottom, right top, color-stop(0%,#011e25), color-stop(100%,#011215)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(45deg,  #011e25 0%,#011215 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(45deg,  #011e25 0%,#011215 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(45deg,  #011e25 0%,#011215 100%); /* IE10+ */
+    background: linear-gradient(45deg,  #011e25 0%,#011215 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#011e25', endColorstr='#011215',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
     border-radius: 4px;

@@ -10,6 +10,7 @@ use XMB\ForumBundle\Entity\Thread;
 class AjaxController extends Controller
 {
     public function indexAction($action, Request $request) {
+        // Convert our action variable to the function name.
         $action .= 'Action';
         
         if (method_exists($this, $action)) {
@@ -26,8 +27,9 @@ class AjaxController extends Controller
             $rating     = intval($request->get('rating'));
             $threadid   = intval($request->get('thread'));
             
+            // Find the thread
             $thread = $em->getRepository('XMBForumBundle:Thread')->find($threadid);
-            
+                        
             $newRating = $rating;
             if ($thread) {
                 $newRating = $thread->getRating() + $rating;

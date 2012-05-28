@@ -15,15 +15,15 @@ class HomeController extends Controller
     
     public function indexAction($forum, Request $request)
     {      
-        $db = $this->get('database_connection');          
-                
-        $where = '';
-        
-        $user = $this->get('security.context')->getToken()->getUser();
-        
+        // Lets set some variables
+        $db         = $this->get('database_connection');                                          
+        $user       = $this->get('security.context')->getToken()->getUser();
+        $where      = '';        
         $forumname  = 'Latest Threads';
         $forumid    = 0;
+                
         if ($forum) {
+            // Find forum by slug
             $getforum = $this->getDoctrine()->getEntityManager()
                 ->getRepository('XMBForumBundle:Forum')
                 ->findBy(array(
@@ -34,6 +34,7 @@ class HomeController extends Controller
                 $forumname = $getforum[0]->getForumname();
                 $forumid   = $getforum[0]->getId();
                 
+                // If not latest threads, search only for threads within selected forum.
                 $where .= 'WHERE t.forumid = "' . $getforum[0]->getId() . '"';
             }
         }
@@ -47,6 +48,7 @@ class HomeController extends Controller
         $threads = $threads->fetchAll($where);
         
         $error = "";
+        // Add an error if no threads are found.
         if (!$threads) {
             if ($forumid == 0) {
                 $error = "Welcome to your new forum! Create a new thread using the actions menu to remove this message!";
@@ -55,7 +57,7 @@ class HomeController extends Controller
             }
         }
         
-        if ($request->isXmlHttpRequest()) {
+        if ($request->isXmlHttpRequest()) { // Return JSON if from ajax request
             foreach ($threads AS $index => $thread) {
                 $threads[$index] = $this->render('XMBForumBundle:Home:thread.html.twig', array(
                     'thread'    => $thread
@@ -67,7 +69,7 @@ class HomeController extends Controller
                 'forumname' => $forumname,
                 'followurl' => $followurl,
                 'error'     => $error,
-                'action'    => 'update_thread_list'
+                'action'    => 'update_thread_list' // Name of JS action to call within XMB.js
             )));   
             
             $response->headers->set('Content-Type', 'application/json');            

@@ -1,10 +1,19 @@
 <tr>
+    <td style="width: 2%; text-align: center;">
+        <span class="badge {% if thread.rating > 0 %}badge-success{% elseif thread.rating < 0 %}badge-important{% endif %}">
+        {{ thread.rating }}
+        </span>       
+    </td>
+    
     <td style="width: 50%;">
         <span class="forum-title"><a href="{{ path('_thread', { 'slug': thread.threadslug }) }}">{{ thread.name }}</a></span>                         
-   </td>
-   <td><a href="{{ path('_home_long', { 'forum': thread.slug }) }}">{{ thread.forumname }}</a></td>
-   <td><a href="{{ path('_profile', { username: thread.username }) }}">{{ thread.username }}</a></td>
-   <td>0</td>
-   <td>1</td>
-   <td>{{ thread.dateline|date('F jS \\a\\t g:ia') }}</td>
+    </td>
+    
+    <td><a href="{{ path('_home_long', { 'forum': thread.slug }) }}">{{ thread.forumname }}</a></td>
+    
+    <td><a href="{{ path('_profile', { username: thread.username }) }}">{{ thread.username }}</a></td>
+    
+    <td>{{ thread.replies }}</td>        
+    
+    <td>{{ thread.lastactivity|date('F jS \\a\\t g:ia') }}</td>
 </tr>

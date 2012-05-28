@@ -1,5 +1,13 @@
 {% extends('XMBForumBundle::layout.html.twig') %}
 
+{% block title %}{% if forumname %}{{ forumname }}{% else %}Home{% endif %}{% endblock %}
+
+{% block breadcrumbs %}
+    {% if forumname %}
+        <li class="active" id="breadcrumbs-forumname">{{ forumname }}</li>
+    {% endif %}
+{% endblock %}
+
 {% block content %}
     <div class="container" style="text-align: center;">
         <div class="row">
@@ -32,10 +40,10 @@
                     <thead>
                         <tr>
                             <th></th>
+                            <th></th>
                             <th>Forum</th>
                             <th>Author</th>
-                            <th>Replies</th>
-                            <th>Views</th>
+                            <th>Replies</th>                            
                             <th>Last Post</th>
                         </tr>
                     </thead>
@@ -90,7 +98,7 @@
 
 {% block sidebar %}
     <ul class="nav nav-pills forum-list" id="forum-list">
-        <li id="forum_li_0" class="active"><a href="javascript://" data-action="{{ path('_home_long', { forum: 0}) }}" onclick="XMB.update_thread_list(null, 0)" id="forum_0" rel="tooltip" data-title="View the latest 15 threads!">Latest Threads</a></li>
+        <li id="forum_li_0" class="active"><a href="javascript://" data-action="{{ path('_home_long', { forum: 0}) }}" onclick="XMB.update_thread_list(null, 0)" id="forum_0" rel="tooltip" data-title="View the latest threads!">Latest Threads</a></li>
         <li class="nav-header">Forums</li>
         {% for forum in forums %}
             <li id="forum_li_{{ forum.id }}"><a href="javascript://" data-action="{{ path('_home_long', { 'forum': forum.slug}) }}" onclick="XMB.update_thread_list('{{ forum.slug }}', {{ forum.id }})" id="forum_{{ forum.id }}" rel="tooltip" data-title="{{ forum.description }}">{{ forum.forumname }}</a></li>

@@ -4,11 +4,7 @@ _home:
     
 _home_long:
     pattern: /home/{forum}
-    defaults: { _controller: XMBForumBundle:Home:index, forum: 0 }
-    
-_profile:
-    pattern: /profile
-    defaults: { _controller: XMBForumBundle:Home:index }
+    defaults: { _controller: XMBForumBundle:Home:index, forum: 0 }    
     
 _thread_new_all:
     pattern: /thread/new
@@ -25,7 +21,11 @@ _thread_new:
 _ajax:
     pattern: /ajax/{action}
     defaults: { _controller: XMBForumBundle:Ajax:index }
-    
+
+_profile_base:
+    pattern: /profile
+    defaults: { _controller: XMBForumBundle:Profile:index } 
+
 _profile:
     pattern: /profile/{username}
     defaults: { _controller: XMBForumBundle:Profile:index }
@@ -33,3 +33,7 @@ _profile:
 _messages:
     pattern: /messages
     defaults: { _controller: XMBForumBundle:Messages:index }
+    
+_error:
+    pattern: /error
+    defaults: { _controller: XMBForumBundle:Error:index }

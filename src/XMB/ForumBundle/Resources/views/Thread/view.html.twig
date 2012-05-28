@@ -24,19 +24,7 @@
                     </ul>
                 </div> 
             
-                <h1>{{ thread.name }}</h1>
-                
-                <small class="visible-phone">
-                    Author: <strong>{{ thread.username }}</strong><br />
-                    Posted: <strong>{{ thread.dateline|date('F jS \\a\\t g:ia') }}</strong><br />
-                    Rating: {% if thread.rating > 0 %}
-                                <span class="badge badge-success" id="thread-rating-phone">{{ thread.rating }}</span>
-                            {% elseif thread.rating < 0 %}
-                                <span class="badge badge-important" id="thread-rating-phone">{{ thread.rating }}</span>
-                            {% else %}
-                                <span class="badge" id="thread-rating-phone">{{ thread.rating }}</span>
-                            {% endif %}
-                </small>   
+                <h1>{{ thread.name }}</h1>                
             </div>                      
         </div>
     </div>
@@ -46,13 +34,21 @@
             <div class="thread-content">
                 <div class="row">
                     <div class="span2 thread-profile">
-                        <strong><a href="{{ path('_profile', {username: thread.username}) }}">{{ thread.username }}</a></strong>
+                        {% include('XMBForumBundle:Thread:thread_profile.html.twig') %}
+                    </div>
+                    
+                    <div class="span9">                                                                                                      
+                        {{ thread.message|striptags|bbcode_filter('xmb') }}
                         
-                        <dl class="sidebar-info visible-desktop" style="margin-top: 0;">
-                            <dt><strong>Posted:</strong></dt> <dd><small>{{ thread.dateline|date('F jS \\a\\t g:ia') }}</small></dd>
-                            
-                            <dt><strong>Rating:</strong></dt> 
-                            <dd>
+                        <br /><br />                                                
+                        
+                        <p style="padding-left: 2em;"><small>{{ thread.username }}'s signature --</small></p>
+                        <p style="padding-left: 3em;">{{ thread.signature|striptags|nl2br|bbcode_filter('xmb') }}</p>
+                        
+                        <div class="pull-right">
+                            <h5>Posted: <small>{{ thread.dateline|date('F jS \\a\\t g:ia') }}</small></h5>
+                            <h5>
+                                Rating: 
                                 {% if thread.rating > 0 %}
                                     <small><span class="badge badge-success" id="thread-rating">{{ thread.rating }}</span></small>
                                 {% elseif thread.rating < 0 %}
@@ -60,20 +56,7 @@
                                 {% else %}
                                     <small><span class="badge" id="thread-rating">{{ thread.rating }}</span></small>
                                 {% endif %}
-                            </dd>
-                        </dl>
-                    </div>
-                    
-                    <div class="span9">                                                          
-                        {{ thread.message|striptags|bbcode_filter('xmb') }}
-                        
-                        <br /><br />
-                        
-                        <p style="padding-left: 2em;"><small>{{ thread.username }}'s signature --</small></p>
-                        <p style="padding-left: 3em;">{{ thread.signature|striptags|nl2br|bbcode_filter('xmb') }}</p>
-                        
-                        <div class="pull-right">
-                            <h5>Posted: <small>{{ thread.dateline|date('F jS \\a\\t g:ia') }}</small></h5>
+                            </h5>                                                        
                         </div>  
                     </div>
                 </div>                                
@@ -90,8 +73,8 @@
                     {% endif %}
                     <button class="btn">Reply</button>
                     <button class="btn">Quote</button>
-                    <button class="btn btn-success" onclick="XMB.update_thread_rating(true, {{ thread.threadid }})" data-action="{{ path('_ajax', { 'action': 'update_thread_rating' }) }}" id="rating-positive"><i class="icon-plus"></i></button>
-                    <button class="btn btn-danger" onclick="XMB.update_thread_rating(false, {{ thread.threadid }})" data-action="{{ path('_ajax', { 'action': 'update_thread_rating' }) }}" id="rating-negative"><i class="icon-minus"></i></button>                    
+                    <button rel="tooltip" data-title="Like this thread!" class="btn btn-success" onclick="XMB.update_thread_rating(true, {{ thread.threadid }})" data-action="{{ path('_ajax', { 'action': 'update_thread_rating' }) }}" id="rating-positive"><i class="icon-plus"></i></button>
+                    <button rel="tooltip" data-title="Dislike this thread!" class="btn btn-danger" onclick="XMB.update_thread_rating(false, {{ thread.threadid }})" data-action="{{ path('_ajax', { 'action': 'update_thread_rating' }) }}" id="rating-negative"><i class="icon-minus"></i></button>                    
                 </div>
             </div>
         </div>
@@ -113,14 +96,8 @@
                 <div class="span12">
                     <div class="thread-content">
                         <div class="row">
-                            <div class="span2 thread-profile">
-                                <strong><a href="{{ path('_profile', {username: thread.username}) }}">{{ thread.username }}</a></strong>
-                                
-                                <dl class="sidebar-info visible-desktop" style="margin-top: 0;">
-                                    <dt><strong>Location:</strong></dt> <dd><small>Ireland</small></dd>
-                                    <dt><strong>Posts:</strong></dt> <dd><small>1</small></dd>
-                                                                        
-                                </dl>
+                            <div class="span2 thread-profile">                                                                                                
+                                    {% include('XMBForumBundle:Thread:thread_profile.html.twig') %}                                                                  
                             </div>
                             
                             <div class="span9">                                                                                                                                           
@@ -140,9 +117,23 @@
                         </div>
                     </div>
                 </div>
+            </div>            
+            
+            <div class="row" style="margin-top: 5px;">
+                <div class="span12"> 
+                    <div class="pull-right">   
+                        <div class="btn-group">
+                            {% if (app.user and app.user.id == thread.userid) or is_granted('ROLE_ADMIN') %}
+                                <button class="btn">Edit</button>
+                            {% endif %}
+                            <button class="btn">Reply</button>
+                            <button class="btn">Quote</button>                                                
+                        </div>
+                    </div>
+                </div>
             </div>
             
-            <br />
+            <br /><br />
         {% endfor %}
     {% endif %}        
     

@@ -29,20 +29,18 @@
 {% endblock %}
 
 {% block sidebar %}
-    <div class="sidebar">
-        <div class="sidebar-info" style="text-align: center; margin-bottom: none;">
-            <h4 class="glow">{{ user.username }}</h4>
-            
-            <hr />
-            
-            <img src="{{ asset('img/avatar-med.png') }}" alt="{{ user.username }}" />
-            
-            <hr />  
-                                                                  
-            <dl style="text-align: left;">  
-                <dt>Posts:</dt> <dd>2</dd>
-                <dt>Joined:</dt> <dd>{{ "now"|date('jS M, Y') }}</dd>
-            </dl>               
-        </div>
+    <div class="sidebar-info" style="text-align: center; margin-bottom: none;">
+        <h4 class="glow">{{ user.username }}</h4>
+        
+        <hr />
+        
+        <img src="{{ asset('img/avatar-med.png') }}" alt="{{ user.username }}" />
+        
+        <hr />  
+                                                              
+        <dl style="text-align: left;">  
+            <dt>Posts:</dt> <dd>2</dd>
+            <dt>Joined:</dt> <dd>{{ "now"|date('jS M, Y') }}</dd>
+        </dl>               
     </div>
 {% endblock %}

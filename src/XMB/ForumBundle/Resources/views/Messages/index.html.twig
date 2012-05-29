@@ -1,11 +1,23 @@
 {% extends('XMBForumBundle::layout.html.twig') %}
 
+{% block title %}Messages{% endblock %}
+
 {% block breadcrumbs %}
     <li class="active"><a href="{{ path('_messages') }}">Messages</a></li>
 {% endblock %}
 
 {% block content %}
-    <div class="content-block">
-    
+    <div class="heading">
+        <h1>Messages</h1>
     </div>
+    
+    <div class="content-block">
+        Hello world
+    </div>
+{% endblock %}
+
+{% block sidebar %}
+    <ul class="nav nav-pills sidebar-info">
+        <li><a href="#">Inbox</a></li>
+    </ul>
 {% endblock %}

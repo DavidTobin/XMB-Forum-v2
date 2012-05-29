@@ -10,13 +10,21 @@ _thread_new_all:
     pattern: /thread/new
     defaults: { _controller: XMBForumBundle:Thread:new }
     
+_thread_action:
+    pattern: /thread/{slug}/{action}
+    defaults: { _controller: XMBForumBundle:Thread:index, action: 'view' }
+    
 _thread:
     pattern: /thread/{slug}
     defaults: { _controller: XMBForumBundle:Thread:index }    
-    
+
 _thread_new:
     pattern: /thread/new/{forum}
     defaults: { _controller: XMBForumBundle:Thread:new, forum: 0 }
+    
+_post_edit:
+    pattern: /post/edit/{postid}
+    defaults: { _controller: XMBForumBundle:Thread:edit }
     
 _ajax:
     pattern: /ajax/{action}

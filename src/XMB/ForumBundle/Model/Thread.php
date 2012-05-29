@@ -22,7 +22,7 @@ class Thread {
     
     public function fetchThread($slug) { 
         $thread = $this->db->executeQuery("
-            SELECT t.*, u.*, p.* FROM thread AS t
+            SELECT t.*, u.*, p.*, p.id AS postid FROM thread AS t
             INNER JOIN users AS u ON (u.id = t.userid)
             INNER JOIN post AS p ON (t.id = p.threadid)
             WHERE t.slug = ? AND p.parentid = 0
@@ -34,7 +34,7 @@ class Thread {
     
     public function fetchReplies($thread) {
         $replies = $this->db->executeQuery("
-            SELECT u.*, p.* FROM post AS p
+            SELECT u.*, p.*, p.id AS postid FROM post AS p
             INNER JOIN users AS u ON (u.id = p.userid)
             WHERE p.parentid > 0 AND p.threadid = ?
             ORDER BY p.postdateline ASC

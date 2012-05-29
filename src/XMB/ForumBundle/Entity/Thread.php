@@ -55,13 +55,17 @@ class Thread implements SluggableInterface
 
     
     public function __construct() {
+        parent::__construct();
+        
         $this->user = new ArrayCollection();
         
-        $this->setDateline(time());
-        $this->setLastactivity(time());
-        $this->setRating(0);
-        $this->setStatus(1);
-        $this->setReplies(0);
+        if ($this->getId() == 0) {
+            $this->setDateline(time());
+            $this->setLastactivity(time());
+            $this->setRating(0);
+            $this->setStatus(1);
+            $this->setReplies(0);
+        }
     }
     
     public function getPost() {
@@ -205,11 +209,7 @@ class Thread implements SluggableInterface
      * @return smallint 
      */
     public function getStatus()
-    {
-        if (!$this->status) {
-            $this->status = 1;
-        }
-        
+    {                
         return $this->status;
     }
 

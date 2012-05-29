@@ -37,6 +37,23 @@ var XMB = {
         }
     },
     
+    toggleThreadStatus: function(threadid) {
+        if (threadid > 0) {
+            var loadingMessage = 'Changing Thread Status...';
+            
+            this.ajax_request({
+               method: $('#toggle-thread').attr('data-url'),
+               
+               params: {
+                    threadid:   threadid,
+                    status:     status
+               },
+               
+               loading: loadingMessage                 
+            });
+        }
+    },
+    
     update_thread_rating: function(positive, threadid) {
         var rating = positive == true ? 1 : -1;
         
@@ -151,6 +168,26 @@ var XMB = {
                         rating.addClass('badge-important');
                         rating_phone.addClass('badge-important');                    
                     }
+                }
+                
+                break;
+                
+            case 'thread_status_toggled':
+                if (data.error.length) {
+                    alert(data.error);    
+                } else {
+                    var toggle  = $('#toggle-thread');
+                    var alert   = $('#thread-locked');
+                    var reply   = $('#thread-reply');
+                    
+                    if (data.status == 1) {
+                        toggle.text('Close Thread');                        
+                    } else {
+                        toggle.text('Open Thread');                        
+                    }
+                    
+                    alert.toggle(500);
+                    reply.toggle(500);
                 }
                 
                 break;

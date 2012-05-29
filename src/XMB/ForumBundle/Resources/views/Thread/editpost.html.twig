@@ -1,7 +1,7 @@
 {% extends('XMBForumBundle::layout.html.twig') %}
 
 {% block breadcrumbs %}    
-    <li class="active"><a href="{{ path('_thread_new', { forum: forumid }) }}">New Thread</a></li>
+    <li class="active"><a href="{{ path('_post_edit', { postid: post.id }) }}">Edit Post</a></li>
 {% endblock %}
 
 {% block content_length %}12{% endblock %}
@@ -14,14 +14,14 @@
             <div class="span2">&nbsp;</div>           
             <div class="span8">
                 <fieldset>
-                    <legend>New Thread</legend>
+                    <legend>Edit Post</legend>
                     
                     <br />
                     
                     {{ form_widget(form) }}
                     
                     <div class="form-actions">
-                        <input type="submit" class="btn btn-primary" name="_submit" value="Create New Thread" />
+                        <input type="submit" class="btn btn-primary" name="_submit" value="Edit Post" />
                     </div>
                 </fieldset>
             </div>

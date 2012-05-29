@@ -257,6 +257,12 @@ td p small {
     border-radius: 5px;*/
 }
 
+.content-block {
+    background: white;
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
 label[for=thread_post] {
     display: none !important;
 }

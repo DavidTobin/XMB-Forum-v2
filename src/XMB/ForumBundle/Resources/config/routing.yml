@@ -37,3 +37,7 @@ _messages:
 _error:
     pattern: /error
     defaults: { _controller: XMBForumBundle:Error:index }
+    
+_install:
+    pattern: /install
+    defaults: { _controller: XMBForumBundle:Install:index }

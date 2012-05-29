@@ -11,3 +11,4 @@
     mailer_password=""
     locale="en"
     secret=""
+    installation="0"

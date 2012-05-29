@@ -18,7 +18,10 @@ class XMBForumExtension extends Extension
      * {@inheritDoc}
      */
     public function load(array $configs, ContainerBuilder $container)
-    {
+    {        
+        // Check if we have ran the installer
+        $install = $container->getParameter('installation');                
+        
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 

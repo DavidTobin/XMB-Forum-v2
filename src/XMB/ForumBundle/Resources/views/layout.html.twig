@@ -33,32 +33,34 @@
                     
                     <div class="brand"><a href="{{ path('_home') }}">{{ xmb_name }}</a> <small>{{ xmb_release }} Version</small></div>                                        
                     
-                    <div class="nav-collapse">
-                        <ul class="nav">
-                            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                                <li><a href="javascript://" class="dropdown-toggle no-border" data-toggle="dropdown">
-                                    <span class="badge {% if 0> 0 %}badge-success{% endif %}">0</span></a>
-                                    
-                                    <ul class="dropdown-menu" id="notifications">
-                                        <li><a href="#">You current have 0 notifications!</a></li>
-                                    </ul>  
-                                </li> 
-                            {% endif %}
-                            <li><a href="{{ path('_home') }}"><i class="icon-home icon-white"></i> Home</a></li>
-                            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") == false %}  
-                                <li><a href="{{ path('fos_user_registration_register') }}"><i class="icon-ok-circle icon-white"></i> Register</a></li>
-                                <li><a href="{{ path('fos_user_security_login') }}"><i class="icon-user icon-white"></i> Login</a></li>
-                            {% else %}                            
-                                <li><a href="{{ path('_profile', { username: app.user.username }) }}"><i class="icon-user icon-white"></i> {{ app.user.username }}</a></li> 
-                                <li><a href="{{ path('_messages') }}"><i class="icon-comment icon-white"></i> Messages</a></li>
-                                <li><a href="#"><i class="icon-cog icon-white"></i> Settings</a></li>                                  
-                            {% endif %}                                                        
-                            
-                            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                                <li><a href="{{ path('fos_user_security_logout') }}"><i class="icon-off icon-white"></i> Logout</a></li>  
-                            {% endif %}                                                                                                                                                                                               
-                        </ul>
-                    </div>                                                            
+                    {% block navigation_links %}
+                        <div class="nav-collapse">
+                            <ul class="nav">
+                                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                                    <li><a href="javascript://" class="dropdown-toggle no-border" data-toggle="dropdown">
+                                        <span class="badge {% if 0> 0 %}badge-success{% endif %}">0</span></a>
+                                        
+                                        <ul class="dropdown-menu" id="notifications">
+                                            <li><a href="#">You current have 0 notifications!</a></li>
+                                        </ul>  
+                                    </li> 
+                                {% endif %}
+                                <li><a href="{{ path('_home') }}"><i class="icon-home icon-white"></i> Home</a></li>
+                                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") == false %}  
+                                    <li><a href="{{ path('fos_user_registration_register') }}"><i class="icon-ok-circle icon-white"></i> Register</a></li>
+                                    <li><a href="{{ path('fos_user_security_login') }}"><i class="icon-user icon-white"></i> Login</a></li>
+                                {% else %}                            
+                                    <li><a href="{{ path('_profile', { username: app.user.username }) }}"><i class="icon-user icon-white"></i> {{ app.user.username }}</a></li> 
+                                    <li><a href="{{ path('_messages') }}"><i class="icon-comment icon-white"></i> Messages</a></li>
+                                    <li><a href="#"><i class="icon-cog icon-white"></i> Settings</a></li>                                  
+                                {% endif %}                                                        
+                                
+                                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                                    <li><a href="{{ path('fos_user_security_logout') }}"><i class="icon-off icon-white"></i> Logout</a></li>  
+                                {% endif %}                                                                                                                                                                                               
+                            </ul>
+                        </div>   
+                    {% endblock %}                                                         
                 </div>
             </div>
         </div> 

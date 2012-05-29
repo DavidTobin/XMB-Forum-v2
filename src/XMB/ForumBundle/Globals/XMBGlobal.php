@@ -9,13 +9,18 @@ use XMB\ForumBundle\Entity\Online;
 
 class XMBGlobal extends Twig_Extension {
     protected $doctrine;
-    
+    protected $installed = 1;
     protected $online;
 
     public function __construct(Registry $doctrine, $container) {
-        $this->doctrine = $doctrine;
-        $this->container = $container;  
+        $this->doctrine     = $doctrine;
+        $this->container    = $container;  
+        $this->installed    = $container->getParameter('installation'); 
         
+        
+        if ($this->installed == 0) {
+            return;
+        }
         
         // Who's Online
         $token = $this->container->get('security.context')->getToken();
@@ -57,10 +62,14 @@ class XMBGlobal extends Twig_Extension {
     }
     
     public function load() {
-        var_dump($this->container->get('security.context'));
+        
     }
     
-    public function getGlobals() {      
+    public function getGlobals() { 
+        if ($this->installed == 0) { // Check if forum is installed
+            return array();
+        }
+        
         $lastonlineid = 0;
         if (is_object(end($this->online))) {
             $lastonlineid = end($this->online)->getUserid();

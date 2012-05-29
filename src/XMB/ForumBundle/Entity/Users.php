@@ -25,6 +25,12 @@ class Users extends BaseUser
      */
     protected $thread;    
     
+    public function __construct() {
+        parent::__construct();
+        
+        $this->setSignature('');
+    }
+    
     /**
      * Get id
      *

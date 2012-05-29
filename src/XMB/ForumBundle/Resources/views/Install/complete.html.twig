@@ -1,0 +1,61 @@
+{% extends('XMBForumBundle::layout.html.twig') %}
+
+{% block navigation_links %}
+    <div class="pull-right">
+        <div class="brand">
+            <h3>Installation</h3>
+        </div>
+    </div>
+{% endblock %}
+
+{% block breadcrumbs %}
+    <li class="active">Installation</li>
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="span12">
+            <div class="alert alert-success">                
+                <strong>Notice: </strong> You have successfully installed XMB Forum!                                
+            </div>
+                
+            <div class="content-block">
+                <p>Installation went off without a hitch and your forum is now almost ready to be used! Before you go, there are a number of important items you should take note of!</p>
+                
+                <br />
+                
+                <h1>Administrator's Account Details</h1>
+                
+                <hr />
+                
+                <p>An administration account has been created for you. It's details are as follows:</p>
+                <p>Username: <strong>Admin</strong></p>
+                <p>Password: <strong>admin</strong></p>
+                
+                <br />
+                
+                <p><strong>Please change these details right away for security purposes!</strong></p>
+                
+                <br /><br />
+                
+                <h1>Important Notice</h1>
+                
+                <hr />
+                
+                <p>In order to use XMB Forum, you need to set the "<strong>installation</strong>" configuration value in <strong>/app/config/parameters.ini</strong> to <strong>1</strong> at this stage in order to prevent users from running this script again.</p>
+                
+                <br /><br />
+                
+                <h1>Final Notes</h1>
+                
+                <hr />
+                
+                <p>We hope you enjoy using our software! You should now continue to your <a href="{{ path('_home') }}">forum home</a> where you can enjoy XMB!</p>
+                
+                <br />
+                
+                <p><strong>-- The XMB Team</strong></p>
+            </div>
+        </div>
+    </div>
+{% endblock %}

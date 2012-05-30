@@ -261,12 +261,7 @@ td p small {
     background: #ffffff;
     padding: 8px;
     border: 1px solid #DEE5F2;
-}
-
-.content-block {
-    background: white;
-    padding: 10px;
-    border: 1px solid #ddd;
+    color: #555;
 }
 
 label[for=thread_post] {
@@ -3571,20 +3566,11 @@ input[type="submit"].btn.btn-mini {
   line-height: 14px;
 }
 
-.nav-tabs {
+.nav-tabs { 
 }
 
 .nav-tabs > li {
-  background: #011e25; /* Old browsers */
-background: -moz-linear-gradient(45deg,  #011e25 0%, #011215 100%); /* FF3.6+ */
-background: -webkit-gradient(linear, left bottom, right top, color-stop(0%,#011e25), color-stop(100%,#011215)); /* Chrome,Safari4+ */
-background: -webkit-linear-gradient(45deg,  #011e25 0%,#011215 100%); /* Chrome10+,Safari5.1+ */
-background: -o-linear-gradient(45deg,  #011e25 0%,#011215 100%); /* Opera 11.10+ */
-background: -ms-linear-gradient(45deg,  #011e25 0%,#011215 100%); /* IE10+ */
-background: linear-gradient(45deg,  #011e25 0%,#011215 100%); /* W3C */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#011e25', endColorstr='#011215',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
-
-  color: #16A3DD;
+  background: transparent;
   margin-bottom: -1px;
   font-size: 13px;
 }

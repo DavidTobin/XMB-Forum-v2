@@ -1,7 +1,7 @@
 /**
     xmb.js
     
-    @author David TObin
+    @author David Tobin
     @copyright 2012 David Tobin
 **/ 
 
@@ -9,6 +9,11 @@ var XMB = {
     init: function() {
         $('.im').bind('click', function() {
            $('#im').modal(); 
+        });
+        
+        $("[rel=tooltip]").tooltip({
+            animation : true,
+            placement : 'bottom'
         });
     },
     
@@ -192,5 +197,7 @@ var XMB = {
                 
                 break;
         }
+        
+        this.init();
     }
 };

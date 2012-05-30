@@ -57,7 +57,7 @@ class XMBGlobal extends Twig_Extension {
            
            $this->online = $this->doctrine->getEntityManager()
                 ->getRepository('XMBForumBundle:Online')
-                ->findAll();
+                ->findAll();                
         }     
     }
     

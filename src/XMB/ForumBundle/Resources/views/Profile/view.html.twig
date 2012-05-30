@@ -5,14 +5,14 @@
 {% endblock %}
 
 {% block content %}
-    <div class="tabbable tabs-left">
+    <div class="tabbable sidebar">
         <ul class="nav nav-tabs">
-            <li class="active"><a href="#info" data-toggle="tab">General Infomation</a></li>
+            <li class="active"><a href="#info" data-toggle="tab">Profile</a></li>
             <li><a href="#statuses" data-toggle="tab">Status Updates</a></li>
-            <li><a href="#contact" data-toggle="tab">Contact</a></li>
+            <li><a href="#contact" data-toggle="tab">Messages</a></li>
         </ul>
         
-        <div class="tab-content">
+        <div class="tab-content sidebar-info">
             <div class="tab-pane active" id="info">
                 <p>This is the info page!</p>
             </div>
@@ -22,7 +22,7 @@
             </div>
             
             <div class="tab-pane" id="contact">
-                <p>This is the contact page!</p>
+                <p>This is the messages page!</p>
             </div>
         </div>
     </div>

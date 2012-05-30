@@ -176,11 +176,10 @@ class ThreadController extends Controller
         }
         
         // Delete posts
-        $em->createQuery()
-            ->delete()
-            ->from('XMBForumBundle:Post p')
-            ->where('p.threadid = ?', $thread->getId())
-            ->execute();
+        $this->get('database_connection')->executeQuery("
+            DELETE FROM post
+            WHERE threadid = ?
+        ", array(0 => $thread->getId()));
         
         // Delete the thread
         $em->remove($thread);

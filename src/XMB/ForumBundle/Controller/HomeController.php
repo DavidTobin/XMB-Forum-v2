@@ -57,6 +57,9 @@ class HomeController extends Controller
             }
         }
         
+        // Statistics
+        
+        
         if ($request->isXmlHttpRequest()) { // Return JSON if from ajax request
             foreach ($threads AS $index => $thread) {
                 $threads[$index] = $this->render('XMBForumBundle:Home:thread.html.twig', array(

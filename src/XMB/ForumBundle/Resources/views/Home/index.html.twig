@@ -9,91 +9,82 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container" style="text-align: center;">
-        <div class="row">
-            <div class="span10">
-                
-                <div class="alert alert-error" id="home_error_container" {% if error == false %}style="display: none;"{% endif %}>
-                    <button class="close" data-dismiss="alert"><i class="icon-remove-sign" style="vertical-align: middle;"></i></button>
-                        
-                    <strong>Alert: </strong> <span id="home_error">{{ error }}</span>
-                </div>                
-            
-                <div class="forum">
-                    <h1>
-                        <span id="active-forum-name">{{ forumname }}</span>
-                        
-                        <span class="btn-group pull-right menu-small" style="padding-right: 10px; padding-top: 8px;">
-                            <a class="btn btn-mini dropdown-toggle no-shadow" data-toggle="dropdown" href="#">
-                                Actions
-                                <span class="caret"></span>
-                            </a>
-                            
-                            <ul class="dropdown-menu">
-                                <li><a id="active-forum-url" href="javascript://" data-url="{{ followurl }}" onclick="XMB.follow_url(this.getAttribute('data-url'))">Create New Thread</a></li>
-                            </ul>
-                        </span>
-                    </h1>                                        
-                </div>
-                
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th></th>
-                            <th>Forum</th>
-                            <th>Author</th>
-                            <th>Replies</th>                            
-                            <th>Last Post</th>
-                        </tr>
-                    </thead>
-                    <tbody id="thread-list">
-                        {% for thread in threads %}
-                            {% include('XMBForumBundle:Home:thread.html.twig') %}
-                        {% endfor %} 
-                    </tbody>
-                </table>
+    <div class="row">
+        <div class="span10">                                                           
+            <div class="forum">
+                <h1>
+                    <span id="active-forum-name">{{ forumname }}</span>
                     
-                <div class="pagination pagination-right">
-                    <ul>
-                        <li class="disabled"><a href="#">Prev</a></li>
-                        <li class="disabled"><a href="javascript://">1</a></li>
-                        <li class="disabled"><a href="#">Next</a></li>
-                    </ul>
-                </div>                                
-                
-                <br />
-                
-                <div class="forum">
-                    <h1>Statistics</h1>
-                </div>
-                
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>Who's Online?</th>
-                            <th>Forum Information</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td style="width: 50%;">
-                                <p>There are currently {{ online_count }} user(s) online!</p>
-                                {% for user in online %}
-                                    <a href="{{ path('_profile', { username: user.username }) }}">{{ user.username }}</a>{% if user.userid != lastonlineid %},{% endif %} 
-                                {% endfor %}
-                            </td>
-                            <td>
-                                <p>We have <strong>1 user(s)</strong> with <strong>1 post(s)</strong> in <strong>1 thread(s)</strong>!</p>
-                                <p>Welcome to our newest user, <a href="#">Admin</a></p>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>                                        
-
+                    <span class="btn-group pull-right menu-small" style="padding-right: 10px; padding-top: 8px;">
+                        <a class="btn btn-mini dropdown-toggle no-shadow" data-toggle="dropdown" href="#">
+                            Actions
+                            <span class="caret"></span>
+                        </a>
+                        
+                        <ul class="dropdown-menu">
+                            <li><a id="active-forum-url" href="javascript://" data-url="{{ followurl }}" onclick="XMB.follow_url(this.getAttribute('data-url'))">Create New Thread</a></li>
+                        </ul>
+                    </span>
+                </h1>                                        
             </div>
+            
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th>Forum</th>
+                        <th>Author</th>
+                        <th>Replies</th>                            
+                        <th>Last Post</th>
+                    </tr>
+                </thead>
+                <tbody id="thread-list">
+                    {% for thread in threads %}
+                        {% include('XMBForumBundle:Home:thread.html.twig') %}
+                    {% endfor %} 
+                </tbody>
+            </table>
+                
+            <div class="pagination pagination-right">
+                <ul>
+                    <li class="disabled"><a href="#">Prev</a></li>
+                    <li class="disabled"><a href="javascript://">1</a></li>
+                    <li class="disabled"><a href="#">Next</a></li>
+                </ul>
+            </div>                                
+            
+            <br />
+            
+            <div class="forum">
+                <h1>Statistics</h1>
+            </div>
+            
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Who's Online?</th>
+                        <th>Forum Information</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="width: 50%;">
+                            <p>There are currently {{ online_count }} user(s) online!</p>
+                            {% for user in online %}
+                                <a href="{{ path('_profile', { username: user.username }) }}">{{ user.username }}</a>{% if user.userid != lastonlineid %},{% endif %} 
+                            {% endfor %}
+                        </td>
+                        <td>
+                            <p>We have <strong>{% if cache.usercount %}{{ cache.usercount }}{% else %}0{% endif %} user(s)</strong> with <strong>1 post(s)</strong> in <strong>1 thread(s)</strong>!</p>
+                            <p>Welcome to our newest user, <a href="#">Admin</a></p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>                                        
+
         </div>
-    </div>    
+    </div>        
 {% endblock %}
 
 {% block sidebar %}

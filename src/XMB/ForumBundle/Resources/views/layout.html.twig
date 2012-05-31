@@ -73,6 +73,17 @@
         </ul>
         
         {% block content_before %}{% endblock %}
+                        
+        <div class="row">
+            <div class="span3">&nbsp;</div>
+            <div class="span6">
+                <div class="alert alert-error" id="error_container" style="display: {% if error is not defined or error is empty %}none{% endif %};">
+                    <button class="close" data-dismiss="alert"><i class="icon-remove-sign" style="vertical-align: middle;"></i></button>
+                        
+                    <strong>Alert: </strong> <span id="error">{{ error|default("") }}</span>
+                </div>
+            </div>
+        </div> 
         
         <div class="row">
             <div class="span{% block content_length %}10{% endblock %}">  

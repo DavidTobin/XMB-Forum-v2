@@ -2,11 +2,6 @@ parameters:
 
 
 services:
-    xmb.security.interactive_login_listener:
-        class: XMB\ForumBundle\Listener\InteractiveLoginListener
-        tags:
-            - { name: kernel.security, event: security.interactive_login, method: onKernelException }
-    
     forum_user.registration.form.type:
         class: XMB\ForumBundle\Form\Type\RegistrationFormType
         arguments: [%fos_user.model.user.class%]
@@ -19,4 +14,9 @@ services:
             doctrine: "@doctrine"
             container: "@service_container"
         tags:
-            - { name: twig.extension }       
+            - { name: twig.extension }  
+            
+    xmb.usercreation.listener:
+        class: XMB\ForumBundle\Listeners\UserCreationListener
+        tags:
+            - { name: doctrine.event_listener, event: postPersist, connection: default }     

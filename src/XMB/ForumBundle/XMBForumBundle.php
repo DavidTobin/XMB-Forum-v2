@@ -14,4 +14,8 @@ class XMBForumBundle extends Bundle
         
         return $response;
     }
+    
+    public function getParent() {
+        return 'FOSUserBundle';
+    }
 }

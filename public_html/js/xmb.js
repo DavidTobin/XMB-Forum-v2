@@ -120,6 +120,19 @@ var XMB = {
     ajax_success: function(data) {
         XMB.untrigger_loading();
         
+        // Show any errors returned.            
+        var error = $('#error');
+        var error_container = $('#error_container');
+        
+        if (typeof(data.error) != 'undefined' && data.error.length) {                    
+            error.text(data.error);
+            error_container.fadeIn();
+            
+            return;            
+        } else {
+            error_container.fadeOut();
+        }
+        
         switch(data.action) {
             case 'update_thread_list':
                 var html = "";
@@ -136,19 +149,7 @@ var XMB = {
                 $('#active-forum-url').attr('data-url', data.followurl);
                 
                 // Change page title to reflect new forum
-                document.title = data.forumname;
-                
-                // Show any errors returned.            
-                var error = $('#home_error');
-                var error_container = $('#home_error_container');
-                
-                if (data.error.length) {                    
-                    error.text(data.error);
-                    error_container.fadeIn();
-                    $()
-                } else {
-                    error_container.fadeOut();
-                }
+                document.title = data.forumname;                                
                 
                 break;
             
@@ -177,27 +178,23 @@ var XMB = {
                 
                 break;
                 
-            case 'thread_status_toggled':
-                if (data.error.length) {
-                    alert(data.error);    
+            case 'thread_status_toggled':                
+                var toggle  = $('#toggle-thread');
+                var alert   = $('#thread-locked');
+                var reply   = $('#thread-reply');
+                
+                if (data.status == 1) {
+                    toggle.text('Close Thread');                        
                 } else {
-                    var toggle  = $('#toggle-thread');
-                    var alert   = $('#thread-locked');
-                    var reply   = $('#thread-reply');
-                    
-                    if (data.status == 1) {
-                        toggle.text('Close Thread');                        
-                    } else {
-                        toggle.text('Open Thread');                        
-                    }
-                    
-                    alert.toggle(500);
-                    reply.toggle(500);
+                    toggle.text('Open Thread');                        
                 }
+                
+                alert.toggle(500);
+                reply.toggle(500);            
                 
                 break;
         }
         
-        this.init();
+        XMB.init();
     }
 };

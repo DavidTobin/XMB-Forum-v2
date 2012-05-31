@@ -57,8 +57,20 @@ class HomeController extends Controller
             }
         }
         
-        // Statistics
-        
+        // Statistics        
+        $cache = $this->getDoctrine()->getEntityManager()
+            ->createQuery("
+                SELECT c
+                FROM XMBForumBundle:Cache c
+                WHERE c.name IN ('usercount')
+            ")->getResult();
+            
+        // Lets make the results better for use in templates
+        $newcache = array();
+        foreach ($cache AS $item) {
+            $newcache[$item->getName()] = $item->getData();
+        }   
+        $cache = $newcache;                                             
         
         if ($request->isXmlHttpRequest()) { // Return JSON if from ajax request
             foreach ($threads AS $index => $thread) {
@@ -87,6 +99,7 @@ class HomeController extends Controller
                 'threads'   => $threads,
                 'forumname' => $forumname,
                 'followurl' => $followurl,
+                'cache'     => $cache,
                 'forums'    => $forums,
                 'error'     => $error
             ));

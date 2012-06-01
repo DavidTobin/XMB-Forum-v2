@@ -49,3 +49,11 @@ _error:
 _install:
     pattern: /install
     defaults: { _controller: XMBForumBundle:Install:index }
+    
+_update:
+    pattern: /update
+    defaults: { _controller: XMBForumBundle:Install:index }
+    
+_admin:
+    pattern: /admin
+    defaults: { _controller: XMBForumBundle:Admin:index }

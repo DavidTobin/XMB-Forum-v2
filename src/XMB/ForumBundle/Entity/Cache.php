@@ -67,7 +67,11 @@ class Cache
      */
     public function setData($data)
     {
-        $this->data = $data;
+        if ($this->getSerialize() == 1) {
+            $this->data = serialize($data);
+        } else {
+            $this->data = $data;
+        }
     }
 
     /**
@@ -77,7 +81,11 @@ class Cache
      */
     public function getData()
     {
-        return $this->data;
+        if ($this->getSerialize() == 1) {
+            return unserialize($this->data);
+        } else {
+            return $this->data;
+        }
     }
 
     /**

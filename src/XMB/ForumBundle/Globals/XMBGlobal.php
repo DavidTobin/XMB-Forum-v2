@@ -18,7 +18,7 @@ class XMBGlobal extends Twig_Extension {
         $this->installed    = $container->getParameter('installation'); 
         
         
-        if ($this->installed == 0) {
+        if ($this->installed == 0 || $this->installed == 2) {
             return;
         }
         
@@ -66,7 +66,7 @@ class XMBGlobal extends Twig_Extension {
     }
     
     public function getGlobals() { 
-        if ($this->installed == 0) { // Check if forum is installed
+        if ($this->installed == 0 || $this->installed == 2) { // Check if forum is installed
             return array();
         }
         

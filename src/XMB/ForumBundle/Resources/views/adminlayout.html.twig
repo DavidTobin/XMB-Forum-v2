@@ -1,0 +1,42 @@
+{% extends('XMBForumBundle::layout.html.twig') %}
+
+{% block content %}
+    <div class="row">    
+        <div class="span2">
+            <div class="sidebar">
+                <div class="sidebar-info">
+                    <ul class="nav nav-pills">
+                        <li><a href="{{ path('_home') }}"><i class="icon-home icon-white"></i> Forum Home</a></li>
+                        <li class="nav-header">Settings</li>                        
+                        <li><a href="oije"><i class="icon-cog icon-white"></i> Manage Settings</a></li>
+                        
+                        <li class="nav-header">Users</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+            
+        <div class="span10" id="cp-content">
+            <div class="alert alert-success">
+                <strong>XMB Information</strong> You are currently running the latest version of XMB Forum!
+            </div>
+            
+            <div class="content-block">
+                                       
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block navigation_links %}
+    <div class="pull-right">
+        <div class="brand">
+            <h3>Admin Control Panel</h3>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content_length %}12{% endblock %}
+{% block sidebar_content %}{% endblock %} 
+{% block breadcrumb_area %}{% endblock %}
+{% block footer %}{% endblock %}

@@ -52,7 +52,11 @@
                                 {% else %}                            
                                     <li><a href="{{ path('_profile', { username: app.user.username }) }}"><i class="icon-user icon-white"></i> {{ app.user.username }}</a></li> 
                                     <li><a href="{{ path('_messages') }}"><i class="icon-comment icon-white"></i> Messages</a></li>
-                                    <li><a href="#"><i class="icon-cog icon-white"></i> Settings</a></li>                                  
+                                    <li><a href="#"><i class="icon-cog icon-white"></i> Settings</a></li> 
+                                    
+                                    {% if is_granted("ROLE_ADMIN") %}
+                                        <li><a href="{{ path('_admin') }}"><i class="icon-wrench icon-white"></i> Admin Control Panel</a></li>
+                                    {% endif %}                                 
                                 {% endif %}                                                        
                                 
                                 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
@@ -65,16 +69,18 @@
             </div>
         </div> 
     </header>
-    
-    <div class="container content">
-        <ul class="breadcrumb">
-            <li><a href="{{ path('_home') }}">Home</a> <span class="divider">/</span></li>
-            {% block breadcrumbs %}{% endblock %}
-        </ul>
+        
+    <div class="{% block pagetype %}container{% endblock %} content">
+        {% block breadcrumb_area %}
+            <ul class="breadcrumb">
+                <li><a href="{{ path('_home') }}">Home</a> <span class="divider">/</span></li>
+                {% block breadcrumbs %}{% endblock %}
+            </ul>
+        {% endblock %}
         
         {% block content_before %}{% endblock %}
                         
-        <div class="row">
+        <div class="{% block before_row_type %}row{% endblock %}">
             <div class="span3">&nbsp;</div>
             <div class="span6">
                 <div class="alert alert-error" id="error_container" style="display: {% if error is not defined or error is empty %}none{% endif %};">
@@ -85,7 +91,7 @@
             </div>
         </div> 
         
-        <div class="row">
+        <div class="{% block content_row_type %}row{% endblock %}">
             <div class="span{% block content_length %}10{% endblock %}">  
                 {% block content %}
                 
@@ -108,26 +114,29 @@
         <div class="container">
             <hr />
         
-            <footer>          
-                <div class="pull-right">
-                    <a href="javascript://" onclick="$('#privacy-policy').modal()">Privacy Policy</a>
-                </div>
+            <footer>        
+                {% block footer %}  
+                    <div class="pull-right">
+                        <a href="javascript://" onclick="$('#privacy-policy').modal()">Privacy Policy</a>
+                    </div>
+                    
+                    <div class="center">
+                        <strong><a href="http://xmbforum2.com">{{ xmb_name }} {{ xmb_version }} {{ xmb_release }}</a></strong>
+                    </div>
+                    
+                {% endblock %}                
+        </div>
                 
-                <div class="center">
-                    <strong><a href="http://xmbforum2.com">{{ xmb_name }} {{ xmb_version }} {{ xmb_release }}</a></strong>
-                </div>                
-            </div>
-            
-            <div class="modal fade" id="privacy-policy" style="display: none;">
-                <div class="modal-header">
-                    <button class="close" data-dismiss="modal">&times;</button>
-                    <h3>Privacy Policy</h3>
+                <div class="modal fade" id="privacy-policy" style="display: none;">
+                    <div class="modal-header">
+                        <button class="close" data-dismiss="modal">&times;</button>
+                        <h3>Privacy Policy</h3>
+                    </div>
+                    
+                    <div class="modal-body">
+                        # PRIVACY POLICY HERE #
+                    </div>
                 </div>
-                
-                <div class="modal-body">
-                    # PRIVACY POLICY HERE #
-                </div>
-            </div>
             
                 <div class="modal modal-form fade" id="login-popup" style="display: none;">            
                     <form action="{{ path('fos_user_security_check') }}" method="post" class="form-horizontal">
@@ -181,6 +190,8 @@
                     });                    
                 </script>
                 {{ tinymce_init() }}
+                
+                {% block javascript_bottom %}{% endblock %}
             </footer>
         </div>
     </div>

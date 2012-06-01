@@ -76,7 +76,7 @@
                             {% endfor %}
                         </td>
                         <td>
-                            <p>We have <strong>{% if cache.usercount %}{{ cache.usercount }}{% else %}0{% endif %} user(s)</strong> with <strong>1 post(s)</strong> in <strong>1 thread(s)</strong>!</p>
+                            <p>We have <strong>{% if cache.usercount is defined %}{{ cache.usercount }}{% else %}0{% endif %} user(s)</strong> with <strong>1 post(s)</strong> in <strong>1 thread(s)</strong>!</p>
                             <p>Welcome to our newest user, <a href="#">Admin</a></p>
                         </td>
                     </tr>

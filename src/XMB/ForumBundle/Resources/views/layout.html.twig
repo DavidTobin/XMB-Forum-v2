@@ -41,7 +41,7 @@
                                         <span class="badge {% if 0> 0 %}badge-success{% endif %}">0</span></a>
                                         
                                         <ul class="dropdown-menu" id="notifications">
-                                            <li><a href="#">You current have 0 notifications!</a></li>
+                                            <li><a href="#">You current have <strong>0</strong> notifications!</a></li>
                                         </ul>  
                                     </li> 
                                 {% endif %}
@@ -83,10 +83,32 @@
         <div class="{% block before_row_type %}row{% endblock %}">
             <div class="span3">&nbsp;</div>
             <div class="span6">
-                <div class="alert alert-error" id="error_container" style="display: {% if error is not defined or error is empty %}none{% endif %};">
-                    <button class="close" data-dismiss="alert"><i class="icon-remove-sign" style="vertical-align: middle;"></i></button>
+                <div class="alert alert-error" id="error_container" style="display: {% if error is not defined or error is empty %}none{% endif %};">                                        
+                    {% if error is defined and error is not empty and error|length > 150 %}
+                        <div class="alert-heading">
+                            <button class="close" data-dismiss="alert"><i class="icon-remove-sign" style="vertical-align: middle;"></i></button>
+                            <h3>Error</h3>                             
+                        </div>
                         
-                    <strong>Alert: </strong> <span id="error">{{ error|default("") }}</span>
+                        <span id="error">
+                            {% if error|trans({}, 'FOSUserBundle') is not empty %}
+                                {{ error|trans({}, 'FOSUserBundle') }}
+                            {% else %}
+                                {{ error }}
+                            {% endif %}
+                        </span>                        
+                    {% else %}    
+                        <button class="close" data-dismiss="alert"><i class="icon-remove-sign" style="vertical-align: middle;"></i></button>
+                        <strong>Alert: </strong> 
+                        
+                        <span id="error">
+                            {% if error|default("")|trans({}, 'FOSUserBundle') is not empty %}
+                                {{ error|default("")|trans({}, 'FOSUserBundle') }}
+                            {% else %}
+                                {{ error|default("") }}
+                            {% endif %} 
+                        </span>
+                    {% endif %}
                 </div>
             </div>
         </div> 

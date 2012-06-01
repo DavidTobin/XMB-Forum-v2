@@ -126,9 +126,7 @@ var XMB = {
         
         if (typeof(data.error) != 'undefined' && data.error.length) {                    
             error.text(data.error);
-            error_container.fadeIn();
-            
-            return;            
+            error_container.fadeIn();          
         } else {
             error_container.fadeOut();
         }

@@ -20,6 +20,7 @@ class AppKernel extends Kernel
             new FOS\UserBundle\FOSUserBundle(),
             new Stfalcon\Bundle\TinymceBundle\StfalconTinymceBundle(),
             new SamJ\DoctrineSluggableBundle\SamJDoctrineSluggableBundle(),
+            new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
             new FM\BbcodeBundle\FMBbcodeBundle(),
             new XMB\ForumBundle\XMBForumBundle(),            
         );

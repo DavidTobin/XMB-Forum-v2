@@ -57,6 +57,15 @@ class HomeController extends Controller
             }
         }
         
+        // Pagination
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $threads,
+            $request->get('page', 1),
+            10
+        );
+        
+        
         // Statistics        
         $cache = $this->getDoctrine()->getEntityManager()
             ->createQuery("
@@ -73,7 +82,7 @@ class HomeController extends Controller
         $cache = $newcache;                                             
         
         if ($request->isXmlHttpRequest()) { // Return JSON if from ajax request
-            foreach ($threads AS $index => $thread) {
+            foreach ($pagination->getItems() AS $index => $thread) {
                 $threads[$index] = $this->render('XMBForumBundle:Home:thread.html.twig', array(
                     'thread'    => $thread
                 ))->getContent();
@@ -83,6 +92,7 @@ class HomeController extends Controller
                 'threads'   => $threads,
                 'forumname' => $forumname,
                 'followurl' => $followurl,
+                'pagination'    => $pagination->render(),
                 'error'     => $error,
                 'action'    => 'update_thread_list' // Name of JS action to call within XMB.js
             )));   
@@ -96,12 +106,13 @@ class HomeController extends Controller
                 ->findAll();
             
             return $this->render('XMBForumBundle:Home:index.html.twig', array(
-                'threads'   => $threads,
-                'forumname' => $forumname,
-                'followurl' => $followurl,
-                'cache'     => $cache,
-                'forums'    => $forums,
-                'error'     => $error
+                'threads'       => $pagination->getItems(),
+                'forumname'     => $forumname,
+                'followurl'     => $followurl,
+                'pagination'    => $pagination->render(),
+                'cache'         => $cache,
+                'forums'        => $forums,
+                'error'         => $error
             ));
         }
     }

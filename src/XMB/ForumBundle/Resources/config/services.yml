@@ -6,17 +6,17 @@ services:
         class: XMB\ForumBundle\Form\Type\RegistrationFormType
         arguments: [%fos_user.model.user.class%]
         tags:
-            - { name: form.type, alias: forum_user_registration }
+            - { name: form.type, alias: forum_user_registration }                  
             
+    xmb.usercreation.listener:
+        class: XMB\ForumBundle\Listeners\UserCreationListener
+        tags:
+            - { name: doctrine.event_listener, event: postPersist, connection: default }     
+
     twig.extension.xmb_global:
         class: XMB\ForumBundle\Globals\XMBGlobal
         arguments:
             doctrine: "@doctrine"
             container: "@service_container"
         tags:
-            - { name: twig.extension }  
-            
-    xmb.usercreation.listener:
-        class: XMB\ForumBundle\Listeners\UserCreationListener
-        tags:
-            - { name: doctrine.event_listener, event: postPersist, connection: default }     
+            - { name: twig.extension }

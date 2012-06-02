@@ -21,6 +21,7 @@ security:
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/thread/new$, role: ROLE_USER }
         - { path: ^/thread/new/, role: ROLE_USER }
+        - { path: ^/admin, role: ROLE_ADMIN }
         - { path: ^/admin/, role: ROLE_ADMIN }
 
     role_hierarchy:

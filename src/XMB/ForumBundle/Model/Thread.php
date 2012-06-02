@@ -50,8 +50,7 @@ class Thread {
             INNER JOIN users AS u ON (t.userid = u.id)
             INNER JOIN forum AS f ON (t.forumid = f.id)
             $where
-            ORDER BY t.lastactivity DESC
-            LIMIT 0,15                      
+            ORDER BY t.lastactivity DESC    
         ");
         
         return $threads;

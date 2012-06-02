@@ -1,0 +1,30 @@
+{% if pageCount > 1 %}
+    <div class="pagination pagination-right">
+        <ul>
+            {% if first is defined and current != first %}
+                <li><a href="javascript://" data-action="{{ path(route, query|merge({(pageParameterName): first})) }}" onclick="XMB.update_thread_list(thread.)">&lt;&lt;</a></li>
+            {% endif %}
+            
+            {% if previous is defined %}
+                <li><a href="{{ path(route, query|merge({(pageParameterName): previous})) }}">Prev</a></li>
+            {% endif %}
+            
+            {% for page in pagesInRange %}
+                {% if page != current %}
+                    <li><a href="{{ path(route, query|merge({(pageParameterName): page})) }}">{{ page }}</a></li>
+                {% else %}
+                    <li class="disabled"><a href="{{ path(route, query|merge({(pageParameterName): page})) }}">{{ page }}</a></li>
+                {% endif %}
+        
+            {% endfor %}
+            
+            {% if next is defined %}
+                <li><a href="{{ path(route, query|merge({(pageParameterName): last})) }}">Next</a></li>
+            {% endif %}
+            
+            {% if last is defined and current != last %}
+                <li><a href="{{ path(route, query|merge({(pageParameterName): last})) }}">&gt;&gt;</a></li>
+            {% endif %}
+        </ul>
+    </div>    
+{% endif %}

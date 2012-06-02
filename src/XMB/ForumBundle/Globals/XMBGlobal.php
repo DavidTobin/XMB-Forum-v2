@@ -9,14 +9,21 @@ use XMB\ForumBundle\Entity\Online;
 
 class XMBGlobal extends Twig_Extension {
     protected $doctrine;
-    protected $installed = 1;
-    protected $online;
+    protected $container;
+    protected $installed    = 1;
+    protected $online       = array();
+    protected $onlineCalled = false;
 
     public function __construct(Registry $doctrine, $container) {
         $this->doctrine     = $doctrine;
         $this->container    = $container;  
-        $this->installed    = $container->getParameter('installation'); 
-        
+        $this->installed    = intval($container->getParameter('installation')); 
+    }
+    
+    private function checkOnline() {
+        if ($this->onlineCalled == true) {
+            return; // Prevent duplicate runs of the function
+        }
         
         if ($this->installed == 0 || $this->installed == 2) {
             return;
@@ -57,15 +64,18 @@ class XMBGlobal extends Twig_Extension {
            
            $this->online = $this->doctrine->getEntityManager()
                 ->getRepository('XMBForumBundle:Online')
-                ->findAll();                
-        }     
-    }
-    
-    public function load() {
+                ->findAll();                        
+        }
         
+        // lets specify that this has already been called to prevent it being called again
+        $this->onlineCalled = true;     
     }
     
     public function getGlobals() { 
+        $this->checkOnline();
+        // Get canonical url
+        $route = $this->container->get('request')->get('_route');
+        
         if ($this->installed == 0 || $this->installed == 2) { // Check if forum is installed
             return array();
         }
@@ -78,7 +88,8 @@ class XMBGlobal extends Twig_Extension {
         return array(
             'online'                => $this->online,
             'online_count'          => count($this->online),
-            'lastonlineid'          => $lastonlineid
+            'lastonlineid'          => $lastonlineid,
+            'canonical'             => $route
         );
     }
     

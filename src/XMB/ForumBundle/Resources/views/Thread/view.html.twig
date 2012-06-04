@@ -47,7 +47,7 @@
                     </div>
                     
                     <div class="span9 post-content">                                                                                                      
-                        {{ thread.message|striptags|bbcode_filter('xmb') }}
+                        {{ thread.message|striptags|bbcode_filter('xmb')|raw }}
                         
                         <br /><br />                                                
                         

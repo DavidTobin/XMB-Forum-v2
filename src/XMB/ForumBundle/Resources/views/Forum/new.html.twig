@@ -1,0 +1,26 @@
+{% extends('XMBForumBundle::layout.html.twig') %}
+
+
+{% block content %}
+    <div class="forum">
+        <h1>Forum creation</h1>
+    </div>
+        
+    <form class="form-horizontal" action="{{ path('admin_forums_create') }}" method="post" {{ form_enctype(form) }}>
+        {{ form_widget(form) }}
+        
+        <div class="form-actions">
+            <button class="btn btn-primary" type="submit">Create Forum</button>
+        </div>
+    </form>
+{% endblock %}    
+    
+{% block sidebar %}
+    <ul class="nav sidebar-info">
+        <li>
+            <a href="{{ path('admin_forums') }}">
+                Back to Forums
+            </a>
+        </li>
+    </ul>
+{% endblock %}

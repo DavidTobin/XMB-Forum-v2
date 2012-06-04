@@ -1,0 +1,50 @@
+{% extends('XMBForumBundle::adminlayout.html.twig') %}
+
+
+{% block content %}
+    <a class="btn btn-primary" href="{{ path('admin_forums_new') }}">
+        Create Forum
+    </a>
+    
+    <br /><br />
+
+    <div class="forum">
+        <h1>Forum List</h1>
+    </div>
+    
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Forumname</th>
+                <th>Slug</th>
+                <th>Description</th>
+                <th>Displayorder</th>
+                <th>Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('admin_forums_show', { 'id': entity.id }) }}">{{ entity.forumname }}</a></td>
+                <td>{{ entity.slug }}</td>
+                <td>{{ entity.description }}</td>
+                <td>{{ entity.displayorder }}</td>
+                <td>{{ entity.id }}</td>
+                <td>
+                    <ul class="nav">
+                        <li>
+                            <a class="btn btn-mini" href="{{ path('admin_forums_show', { 'id': entity.id }) }}">Show</a>
+                        </li>
+                        <li>&nbsp;</li>
+                        <li>
+                            <a class="btn btn-mini" href="{{ path('admin_forums_edit', { 'id': entity.id }) }}">Edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+  
+{% endblock %}

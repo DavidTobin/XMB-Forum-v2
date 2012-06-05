@@ -1,0 +1,42 @@
+{% extends('XMBForumBundle::adminlayout.html.twig') %}
+
+{% block content %}
+    <div class="forum">
+        <h1>Users</h1>
+    </div>
+    
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Username</th>                
+                <th>Email</th>    
+                <th>Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('admin_users_show', { 'id': entity.id }) }}">{{ entity.username }}</a></td>                
+                <td>{{ entity.email }}</td>
+                <td>{{ entity.id }}</td>
+                <td>
+                    <ul class="nav">
+                        <li>
+                            <a href="{{ path('admin_users_show', { 'id': entity.id }) }}">Show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('admin_users_edit', { 'id': entity.id }) }}">Edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    
+    <a class="btn btn-primary" href="{{ path('admin_users_new') }}">
+        Create New User
+    </a>
+        
+{% endblock %}

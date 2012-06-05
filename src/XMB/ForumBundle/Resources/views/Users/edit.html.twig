@@ -1,0 +1,24 @@
+{% extends('XMBForumBundle::adminlayout.html.twig') %}
+
+{% block content %}
+    <form action="{{ path('admin_users_delete', { 'id': entity.id }) }}" method="post" style="background: inherit;">    
+        <a class="btn" href="{{ path('admin_users') }}">
+            Back to Users
+        </a>        
+        
+        <button class="btn btn-danger" type="submit">Delete</button>
+                    
+        {{ form_widget(delete_form) }}                
+    </form>
+
+    <div class="forum">
+        <h1>Users edit</h1>
+    </div>
+    
+    <form class="form-horizontal" action="{{ path('admin_users_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
+        {{ form_widget(edit_form) }}
+        <div class="form-actions">
+            <button class="btn btn-primary" type="submit">Edit</button>
+        </div>
+    </form>    
+{% endblock %}

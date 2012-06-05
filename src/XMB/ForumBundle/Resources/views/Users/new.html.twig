@@ -1,0 +1,20 @@
+{% extends('XMBForumBundle::adminlayout.html.twig') %}
+
+{% block content %}
+    <a class="btn btn-primary" href="{{ path('admin_users') }}">
+        Back to the list
+    </a>
+    
+    <br /><br />
+    
+    <div class="forum">
+        <h1>Create User</h1>
+    </div>
+    
+    <form class="form-horizontal" action="{{ path('admin_users_create') }}" method="post" {{ form_enctype(form) }}>
+        {{ form_widget(form) }}
+        <div class="form-actions">
+            <button class="btn btn-primary" type="submit">Create User</button>
+        </div>
+    </form>
+{% endblock %}

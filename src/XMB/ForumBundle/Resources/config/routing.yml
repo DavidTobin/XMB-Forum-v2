@@ -61,3 +61,6 @@ _admin:
 # CRUD Routing
 _adminforums:
     resource: "@XMBForumBundle/Resources/config/routing/forum.xml"
+    
+_adminusers:
+    resource: "@XMBForumBundle/Resources/config/routing/users.yml"

@@ -1,0 +1,30 @@
+admin_users:
+    pattern:  admin/users
+    defaults: { _controller: "XMBForumBundle:Users:index" }
+
+admin_users_show:
+    pattern:  admin/users/{id}/show
+    defaults: { _controller: "XMBForumBundle:Users:show" }
+
+admin_users_new:
+    pattern:  admin/users/new
+    defaults: { _controller: "XMBForumBundle:Users:new" }
+
+admin_users_create:
+    pattern:  admin/users/create
+    defaults: { _controller: "XMBForumBundle:Users:create" }
+    requirements: { _method: post }
+
+admin_users_edit:
+    pattern:  admin/users/{id}/edit
+    defaults: { _controller: "XMBForumBundle:Users:edit" }
+
+admin_users_update:
+    pattern:  admin/users/{id}/update
+    defaults: { _controller: "XMBForumBundle:Users:update" }
+    requirements: { _method: post }
+
+admin_users_delete:
+    pattern:  admin/users/{id}/delete
+    defaults: { _controller: "XMBForumBundle:Users:delete" }
+    requirements: { _method: post }
